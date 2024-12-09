@@ -20,7 +20,7 @@
         <dependency>
             <groupId>biz.car</groupId>
             <artifactId>biz.car</artifactId>
-            <version>1.0.0</version>
+            <version>1.0.1</version>
         </dependency>
         <dependency>
             <groupId>org.osgi</groupId>

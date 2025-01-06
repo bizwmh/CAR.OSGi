@@ -16,7 +16,6 @@ import biz.car.config.BCS;
 public class MSG {
 
 	public static String BUNDLE_EVENT;
-	public static String FRAMEWORK_EVENT;
 	public static String FWK_ABENDED;
 	public static String FWK_INIT_ERROR;
 	public static String FWK_INITIALIZED;

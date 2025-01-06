@@ -24,6 +24,7 @@ import biz.car.XRuntimeException;
 import biz.car.config.ACS;
 import biz.car.config.XConfig;
 import biz.car.osgi.bundle.BND;
+import biz.car.osgi.bundle.KEY;
 import biz.car.osgi.bundle.MSG;
 import biz.car.osgi.bundle.VAL;
 import biz.car.osgi.deploy.Deployer;
@@ -85,12 +86,9 @@ public class Launcher implements Runnable {
 
             // Build the framework configuration
 	        // Converts the given framework configuration to a map.
-            // The map then contains only keys as defined by the OSGi framework specification.
+            // The map then contains only keys as required by the OSGi framework implementation.
             Map<String, String> l_osgiConf = new HashMap<>();
-            String l_res = BND.FRAMEWORK + _properties;
-            Config l_conf = ACS.parseResource(l_res)
-            		.orElse(ConfigFactory.empty());
-            XConfig l_fwkKeys = () -> l_conf;
+            XConfig l_fwkKeys = () -> KEY.conf;
 
             l_fwkProps.entrySet().stream()
                     .forEach(entry -> {

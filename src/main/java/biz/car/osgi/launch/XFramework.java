@@ -53,8 +53,7 @@ public class XFramework {
 			fwk = XFrameworkFactory.get(aConfig);
 
 			// Initialize the OSGi framework
-			XFrameworkListener l_fl = new XFrameworkListener();
-			fwk.init(l_fl);
+			fwk.init();
 			SYS.LOG.info(MSG.FWK_INITIALIZED, fwk.getSymbolicName(), fwk.getVersion());
 			debug();
 

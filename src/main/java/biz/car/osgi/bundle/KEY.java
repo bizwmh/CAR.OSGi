@@ -6,30 +6,32 @@
 
 package biz.car.osgi.bundle;
 
-import biz.car.util.SFI;
+import static biz.car.VAL._properties;
+
+import com.typesafe.config.Config;
+
+import biz.car.config.ACS;
 
 /**
- * Bundle constants.
+ * Framework specific keys for runtime options.
  *
- * @version 1.0.0 11.10.2024 08:22:46
+ * @version 1.0.0 06.01.2025 10:38:37
  */
-public class VAL {
+public class KEY {
 
-	public static String bundle_startLevel;
-	public static String framework_data_area;
-	public static String osgi_install_area;
-
+	public static final Config conf;
+	
 	// -------------------------------------------------------------------------
 	// Initialize the static fields
 	// -------------------------------------------------------------------------
 	static {
-		SFI.initialize(VAL.class);
+        conf = ACS.initialize(KEY.class, BND.FRAMEWORK + _properties);
 	}
-
+	
 	/**
-	 * Creates a default VAR instance.
+	 * Creates a default <code>KEY</code> instance.
 	 */
-	private VAL() {
+	private KEY() {
 		super();
 	}
 }

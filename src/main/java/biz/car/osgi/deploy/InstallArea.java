@@ -26,6 +26,8 @@ import org.osgi.framework.Constants;
 import org.osgi.framework.startlevel.BundleStartLevel;
 
 import biz.car.SYS;
+import biz.car.osgi.bundle.KEY;
+import biz.car.osgi.bundle.VAL;
 import biz.car.osgi.launch.XFramework;
 
 /**
@@ -47,8 +49,9 @@ public class InstallArea {
 		BundleContext l_ctx = XFramework.getBundleContext();
 		Bundle[] l_bundles = l_ctx.getBundles();
 		String l_areaName = l_ctx.getProperty(osgi_install_area);
+		String l_location = toLocation(l_areaName);
 		List<Bundle> l_ret = Arrays.asList(l_bundles).stream()
-				.filter(b -> b.getLocation().startsWith(l_areaName))
+				.filter(b -> b.getLocation().startsWith(l_location))
 				.collect(Collectors.toList());
 
 		return l_ret;
@@ -67,7 +70,8 @@ public class InstallArea {
 
 			if (l_header == null) {
 				BundleStartLevel l_bsl = l_bundle.adapt(BundleStartLevel.class);
-				String l_lvl = l_ctx.getProperty(osgi_bundles_defaultStartLevel);
+				String l_key = KEY.conf.getString(VAL.bundle_startLevel);
+				String l_lvl = l_ctx.getProperty(l_key);
 				Matcher l_matcher = areaPath.matcher(aLocation);
 
 				if (l_matcher.find()) {
@@ -90,6 +94,7 @@ public class InstallArea {
 		try {
 			BundleContext l_ctx = XFramework.getBundleContext();
 			String l_areaName = l_ctx.getProperty(osgi_install_area);
+			l_areaName = toLocation(l_areaName);
 			URI l_uri = new URI(l_areaName);
 			File l_dir = new File(l_uri);
 			List<String> l_ret = jarFiles(l_dir);
@@ -150,6 +155,16 @@ public class InstallArea {
 					l_ret.add(l_jar.toURI().toString());
 				}
 			}
+		}
+		return l_ret;
+	}
+
+	private static String toLocation(String aPath) {
+		String l_ret = aPath;
+		File l_file = new File(aPath);
+		
+		if (l_file.exists()) {
+			l_ret = l_file.toURI().toString();
 		}
 		return l_ret;
 	}

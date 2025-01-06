@@ -1,7 +1,7 @@
 target/
 log/
 workspace/
-configuration/org.eclipse.osgi
+bundle-cache/
 .settings
 # Eclipse m2e generated files
 # Eclipse Core

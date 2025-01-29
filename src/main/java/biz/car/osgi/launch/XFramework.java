@@ -52,8 +52,11 @@ public class XFramework {
 			// Create an instance of the OSGi framework.
 			fwk = XFrameworkFactory.get(aConfig);
 
-			// Initialize the OSGi framework
-			fwk.init();
+			// Create a framework listener
+			XFrameworkListener l_fl = new XFrameworkListener();
+
+			// Initialize the OSGi framework using the framework listener
+			fwk.init(l_fl);
 			SYS.LOG.info(MSG.FWK_INITIALIZED, fwk.getSymbolicName(), fwk.getVersion());
 			debug();
 
@@ -114,7 +117,7 @@ public class XFramework {
 	 * Writes the framework properties and bundle information to the log file.
 	 */
 	private static void debug() {
-		if (!SYS.LOG.logger().isDebugEnabled())
+		if (!SYS.LOG.isDebugEnabled())
 			return;
 
 		FrameworkDTO l_dto = fwk.adapt(FrameworkDTO.class);

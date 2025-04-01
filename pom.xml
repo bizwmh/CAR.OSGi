@@ -20,7 +20,7 @@
         <dependency>
             <groupId>biz.car</groupId>
             <artifactId>biz.car</artifactId>
-            <version>2.1.0</version>
+            <version>2.1.2</version>
         </dependency>
 		<dependency>
 			<groupId>org.apache.felix</groupId>

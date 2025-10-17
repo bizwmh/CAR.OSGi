@@ -14,7 +14,7 @@ import org.osgi.framework.Bundle;
  * The processor of the jar files in the installation area for the OSGi
  * framework bundles.
  *
- * @version 1.0.0 11.10.2024 08:46:57
+ * @version 2.0.0 14.10.2025 12:00:19
  */
 public class Deployer {
 

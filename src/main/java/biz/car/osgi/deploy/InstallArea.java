@@ -7,7 +7,7 @@
 package biz.car.osgi.deploy;
 
 import static biz.car.VAL._jar;
-import static biz.car.osgi.bundle.VAL.*;
+import static biz.car.osgi.bundle.VAL.osgi_install_area;
 
 import java.io.File;
 import java.net.URI;
@@ -28,12 +28,12 @@ import org.osgi.framework.startlevel.BundleStartLevel;
 import biz.car.SYS;
 import biz.car.osgi.bundle.KEY;
 import biz.car.osgi.bundle.VAL;
-import biz.car.osgi.launch.XFramework;
+import biz.car.osgi.framework.XFramework;
 
 /**
  * Functions related to the OSGi installation area.
  *
- * @version 1.0.0 09.10.2024 11:29
+ * @version 2.0.0 14.10.2025 12:01:10
  */
 public class InstallArea {
 
@@ -162,7 +162,7 @@ public class InstallArea {
 	private static String toLocation(String aPath) {
 		String l_ret = aPath;
 		File l_file = new File(aPath);
-		
+
 		if (l_file.exists()) {
 			l_ret = l_file.toURI().toString();
 		}

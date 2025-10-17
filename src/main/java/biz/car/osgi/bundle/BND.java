@@ -13,7 +13,7 @@ import biz.car.config.ACS;
 /**
  * Bundle Constants.
  *
- * @version 1.0.0 11.10.2024 06:57:54
+ * @version 2.0.0 13.10.2025 15:24:37
  */
 public class BND {
 

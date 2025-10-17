@@ -15,7 +15,7 @@ import biz.car.config.ACS;
 /**
  * Framework specific keys for runtime options.
  *
- * @version 1.0.0 06.01.2025 10:38:37
+ * @version 2.0.0 14.10.2025 11:55:48
  */
 public class KEY {
 

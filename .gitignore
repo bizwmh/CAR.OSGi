@@ -2,6 +2,7 @@ target/
 log/
 workspace/
 bundle-cache/
+wrk/
 .settings
 # Eclipse m2e generated files
 # Eclipse Core

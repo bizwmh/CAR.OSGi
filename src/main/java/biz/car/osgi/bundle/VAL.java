@@ -11,7 +11,7 @@ import biz.car.util.SFI;
 /**
  * Bundle constants.
  *
- * @version 1.0.0 11.10.2024 08:22:46
+ * @version 2.0.0 14.10.2025 11:56:54
  */
 public class VAL {
 

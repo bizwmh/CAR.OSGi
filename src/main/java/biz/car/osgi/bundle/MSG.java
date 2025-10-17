@@ -6,12 +6,12 @@
 
 package biz.car.osgi.bundle;
 
-import biz.car.config.BCS;
+import biz.car.config.ACS;
 
 /**
  * Bundle messages.
  *
- * @version 1.0.0 11.10.2024 06:54:45
+ * @version 2.0.0 13.10.2025 15:25:05
  */
 public class MSG {
 
@@ -30,7 +30,7 @@ public class MSG {
 	// Initialize the static fields
 	// -------------------------------------------------------------------------
 	static {
-		BCS.initialize(MSG.class, "MSG.properties"); //$NON-NLS-1$
+		ACS.initialize(MSG.class, "MSG.properties"); //$NON-NLS-1$
 	}
 
 	/**

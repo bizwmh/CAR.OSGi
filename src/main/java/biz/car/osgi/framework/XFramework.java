@@ -10,8 +10,6 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.Map;
 
-import biz.car.osgi.bundle.BND;
-import biz.car.util.XTimestamp;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.BundleException;
@@ -23,7 +21,9 @@ import org.osgi.framework.startlevel.dto.BundleStartLevelDTO;
 import org.osgi.framework.startlevel.dto.FrameworkStartLevelDTO;
 
 import biz.car.SYS;
+import biz.car.osgi.bundle.BND;
 import biz.car.osgi.bundle.MSG;
+import biz.car.util.XTimestamp;
 
 /**
  * Facade to the OSGi framework implementation.
@@ -151,6 +151,7 @@ public class XFramework {
 					l_bBundle.append("\n\t\t\t\tupdated    " + l_ts.toString()); //$NON-NLS-1$
 					l_bBundle.append("\n\t\t\t\tStartlevel " + l_bsl.startLevel); //$NON-NLS-1$
 					l_bBundle.append("\n\t\t\t\tLocation   " + bundle.getLocation()); //$NON-NLS-1$
+					l_bBundle.append("\n\t\t\t\tData Area  " + bundle.getDataFile("")); //$NON-NLS-1$ //$NON-NLS-2$
 
 					return l_bBundle;
 				})

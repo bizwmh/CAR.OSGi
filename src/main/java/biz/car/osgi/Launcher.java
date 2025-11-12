@@ -102,7 +102,7 @@ public class Launcher implements Runnable {
             XFramework.init(l_osgiConf);
 
             // process the framework data area
-            String l_da = l_osgiConf.get(VAL.framework_data_area);
+            String l_da = l_osgiConf.get(VAL.framework_workspace_area);
     		File l_ws = new File(l_da);
     		
     		l_ws.mkdirs();

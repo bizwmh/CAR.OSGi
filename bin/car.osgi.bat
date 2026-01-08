@@ -54,6 +54,11 @@ if exist "%JAVA_HOME%\bin\java.exe" (
 	)
 )
 set JAVA_OPTS=%JAVA_OPTS% -Xms32M -Xmx128M
+set JAVA_OPTS=%JAVA_OPTS% --add-modules=ALL-SYSTEM
+set JAVA_OPTS=%JAVA_OPTS% --add-opens=java.base/java.lang=ALL-UNNAMED
+set JAVA_OPTS=%JAVA_OPTS% --add-opens=java.base/java.util=ALL-UNNAMED
+set JAVA_OPTS=%JAVA_OPTS% --add-opens=java.base/java.time=ALL-UNNAMED
+set JAVA_OPTS=%JAVA_OPTS% --add-opens=java.base/java.nio=ALL-UNNAMED
 
 if "%1" == "debug" (
    set JAVA_OPTS=%JAVA_OPTS% -agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=5005

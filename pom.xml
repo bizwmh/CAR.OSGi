@@ -15,7 +15,7 @@
 		<bundle.prefix>biz.wmh</bundle.prefix>
 		<deploy.path.lib>C:/IDE/WORKSPACE/CAR.OSGi/lib</deploy.path.lib>
 		<deploy.path.bundle>C:/IDE/WORKSPACE/CAR.OSGi/bundles</deploy.path.bundle>
-		<maven.compiler.release>11</maven.compiler.release>
+		<maven.compiler.release>17</maven.compiler.release>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
@@ -81,7 +81,7 @@
 						<configuration>
 							<rules>
 								<enforceBytecodeVersion>
-									<maxJdkVersion>11</maxJdkVersion>
+									<maxJdkVersion>17</maxJdkVersion>
 								</enforceBytecodeVersion>
 							</rules>
 							<fail>true</fail>

@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+	<timestamp datePattern="yyyyMMdd'T'HHmmss" key="byDay" />
+
+	<appender name="CONSOLE"
+		class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS} [%.30thread] %-5level %logger{36} -
+			  %msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="FILE" class="ch.qos.logback.core.FileAppender">
+		<file> log/log-${byDay}.txt </file>
+		<encoder>
+			<pattern>%d{yyyy.MM.dd HH:mm:ss.SSS} [%.15thread] %-5level %logger{36}:%line -
+				%msg%n</pattern>
+		</encoder>
+		<immediateFlush>true</immediateFlush>
+	</appender>
+
+	<root level="DEBUG">
+		<appender-ref ref="CONSOLE" />
+		<appender-ref ref="FILE" />
+	</root>
+</configuration>

@@ -11,7 +11,7 @@ import biz.car.osgi.bundle.BND;
 /**
  * Entry points for starting and stopping the OSGi framework.
  *
- * @version 2.0.0 04.10.2025 13:42:37
+ * @version 2.0.0 08.01.2026 11:00:50
  */
 public class Main {
 

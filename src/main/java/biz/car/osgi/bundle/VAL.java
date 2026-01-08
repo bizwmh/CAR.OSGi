@@ -6,12 +6,12 @@
 
 package biz.car.osgi.bundle;
 
-import biz.car.util.SFI;
+import biz.wmh.car.util.SFI;
 
 /**
  * Bundle constants.
  *
- * @version 2.0.0 14.10.2025 11:56:54
+ * @version 2.0.0 08.01.2026 11:00:50
  */
 public class VAL {
 

@@ -8,12 +8,12 @@ package biz.car.osgi.bundle;
 
 import com.typesafe.config.Config;
 
-import biz.car.config.ACS;
+import biz.wmh.car.config.ACS;
 
 /**
  * Bundle Constants.
  *
- * @version 2.0.0 13.10.2025 15:24:37
+ * @version 2.0.0 08.01.2026 11:00:50
  */
 public class BND {
 

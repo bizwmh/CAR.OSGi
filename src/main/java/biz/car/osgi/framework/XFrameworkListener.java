@@ -10,13 +10,13 @@ import org.osgi.framework.Bundle;
 import org.osgi.framework.FrameworkEvent;
 import org.osgi.framework.FrameworkListener;
 
-import biz.car.SYS;
+import biz.wmh.car.SYS;
 import biz.car.osgi.bundle.MSG;
 
 /**
  * Logs the events of the OSGi framework.
  *
- * @version 1.0.0 11.10.2024 08:28:44
+ * @version 2.0.0 08.01.2026 11:00:50
  */
 public class XFrameworkListener implements FrameworkListener {
 

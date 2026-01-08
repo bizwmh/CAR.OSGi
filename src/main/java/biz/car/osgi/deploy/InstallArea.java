@@ -6,7 +6,7 @@
 
 package biz.car.osgi.deploy;
 
-import static biz.car.VAL._jar;
+import static biz.wmh.car.VAL._jar;
 import static biz.car.osgi.bundle.VAL.osgi_install_area;
 
 import java.io.File;
@@ -25,7 +25,7 @@ import org.osgi.framework.BundleException;
 import org.osgi.framework.Constants;
 import org.osgi.framework.startlevel.BundleStartLevel;
 
-import biz.car.SYS;
+import biz.wmh.car.SYS;
 import biz.car.osgi.bundle.KEY;
 import biz.car.osgi.bundle.VAL;
 import biz.car.osgi.framework.XFramework;
@@ -33,7 +33,7 @@ import biz.car.osgi.framework.XFramework;
 /**
  * Functions related to the OSGi installation area.
  *
- * @version 2.0.0 14.10.2025 12:01:10
+ * @version 2.0.0 08.01.2026 11:00:50
  */
 public class InstallArea {
 

@@ -13,13 +13,13 @@ import java.util.ServiceLoader;
 import org.osgi.framework.launch.Framework;
 import org.osgi.framework.launch.FrameworkFactory;
 
-import biz.car.SYS;
-import biz.car.bundle.MSG;
+import biz.wmh.car.SYS;
+import biz.wmh.car.bundle.MSG;
 
 /**
  * Creates a new instance of the OSGi framework.
  *
- * @version 2.0.0 13.10.2025 15:30:51
+ * @version 2.0.0 08.01.2026 11:00:50
  */
 public class XFrameworkFactory {
 

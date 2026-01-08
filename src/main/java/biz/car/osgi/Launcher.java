@@ -6,7 +6,7 @@
 
 package biz.car.osgi;
 
-import static biz.car.VAL._properties;
+import static biz.wmh.car.VAL._properties;
 
 import java.io.File;
 import java.util.HashMap;
@@ -19,10 +19,10 @@ import org.osgi.framework.Bundle;
 import com.typesafe.config.Config;
 import com.typesafe.config.ConfigFactory;
 
-import biz.car.SYS;
-import biz.car.XRuntimeException;
-import biz.car.config.ACS;
-import biz.car.config.XConfig;
+import biz.wmh.car.SYS;
+import biz.wmh.car.XRuntimeException;
+import biz.wmh.car.config.ACS;
+import biz.wmh.car.config.XConfig;
 import biz.car.osgi.bundle.BND;
 import biz.car.osgi.bundle.KEY;
 import biz.car.osgi.bundle.MSG;
@@ -34,7 +34,7 @@ import biz.car.osgi.framework.XFramework;
 /**
  * Initializes and starts the OSGi framework.
  *
- * @version 2.0.0 04.10.2025 13:39:30
+ * @version 2.0.0 08.01.2026 11:00:50
  */
 public class Launcher implements Runnable {
 	

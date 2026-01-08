@@ -14,12 +14,12 @@ import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleEvent;
 import org.osgi.framework.BundleListener;
 
-import biz.car.SYS;
+import biz.wmh.car.SYS;
 
 /**
  * A listener for the events of a bundle in the OSGi framework.
  *
- * @version 2.0.0 13.10.2025 15:29:07
+ * @version 2.0.0 08.01.2026 11:00:50
  */
 public class XBundleListener implements BundleListener {
 

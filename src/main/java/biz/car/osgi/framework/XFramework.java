@@ -20,15 +20,15 @@ import org.osgi.framework.launch.Framework;
 import org.osgi.framework.startlevel.dto.BundleStartLevelDTO;
 import org.osgi.framework.startlevel.dto.FrameworkStartLevelDTO;
 
-import biz.car.SYS;
 import biz.car.osgi.bundle.BND;
 import biz.car.osgi.bundle.MSG;
-import biz.car.util.XTimestamp;
+import biz.wmh.car.SYS;
+import biz.wmh.car.util.XTimestamp;
 
 /**
  * Facade to the OSGi framework implementation.
  *
- * @version 2.0.0 13.10.2025 16:08:05
+ * @version 2.0.0 08.01.2026 11:00:50
  */
 public class XFramework {
 

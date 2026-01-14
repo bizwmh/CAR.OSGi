@@ -59,6 +59,8 @@ set JAVA_OPTS=%JAVA_OPTS% --add-opens=java.base/java.lang=ALL-UNNAMED
 set JAVA_OPTS=%JAVA_OPTS% --add-opens=java.base/java.util=ALL-UNNAMED
 set JAVA_OPTS=%JAVA_OPTS% --add-opens=java.base/java.time=ALL-UNNAMED
 set JAVA_OPTS=%JAVA_OPTS% --add-opens=java.base/java.nio=ALL-UNNAMED
+set JAVA_OPTS=%JAVA_OPTS% -XX:MaxMetaspaceSize=128m
+set JAVA_OPTS=%JAVA_OPTS% -Dsun.net.inetaddr.ttl=60
 
 if "%1" == "debug" (
    set JAVA_OPTS=%JAVA_OPTS% -agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=5005
@@ -68,7 +70,8 @@ if "%1" == "debug" (
 @REM Setup Classpath
 @REM ---------------------------------------------------------------------------
 
-set "CLASSPATH=lib\*"
+set "CLASSPATH=lib\org.eclipse.osgi-3.21.0.jar"
+set "CLASSPATH=%CLASSPATH%;lib\*"
 set "CLASSPATH=%CLASSPATH%;configuration"
 
 @REM ---------------------------------------------------------------------------

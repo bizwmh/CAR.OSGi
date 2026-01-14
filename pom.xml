@@ -12,9 +12,7 @@
 	<description>OSGi Framework Launcher</description>
 
 	<properties>
-		<bundle.prefix>biz.wmh</bundle.prefix>
 		<deploy.path.lib>C:/IDE/WORKSPACE/CAR.OSGi/lib</deploy.path.lib>
-		<deploy.path.bundle>C:/IDE/WORKSPACE/CAR.OSGi/bundles</deploy.path.bundle>
 		<maven.compiler.release>17</maven.compiler.release>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
@@ -27,8 +25,8 @@
 		</dependency>
 		<dependency>
 			<groupId>org.osgi</groupId>
-			<artifactId>org.osgi.core</artifactId>
-			<version>6.0.0</version>
+			<artifactId>org.osgi.framework</artifactId>
+			<version>1.10.0</version>
 		</dependency>
 		<dependency>
 			<groupId>com.typesafe</groupId>
@@ -40,25 +38,7 @@
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
 			<version>2.0.16</version>
-			<scope>runtime</scope>
-		</dependency>
-		<dependency>
-			<groupId>ch.qos.logback</groupId>
-			<artifactId>logback-classic</artifactId>
-			<version>1.5.7</version>
-			<scope>runtime</scope>
-		</dependency>
-		<dependency>
-			<groupId>ch.qos.logback</groupId>
-			<artifactId>logback-core</artifactId>
-			<version>1.5.7</version>
-			<scope>runtime</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.eclipse.platform</groupId>
-			<artifactId>org.eclipse.osgi</artifactId>
-			<version>3.21.0</version>
-			<scope>runtime</scope>
+			<scope>provided</scope>
 		</dependency>
 	</dependencies>
 	<build>
@@ -109,11 +89,44 @@
 						</goals>
 						<configuration>
 							<artifactItems>
+								<!-- OSGi Framework Launcher -->
 								<artifactItem>
 									<groupId>${project.groupId}</groupId>
 									<artifactId>${project.artifactId}</artifactId>
 									<version>${project.version}</version>
-									<type>jar</type>
+									<outputDirectory>${deploy.path.lib} </outputDirectory>
+								</artifactItem>
+								<!-- OSGi Framework -->
+								<artifactItem>
+									<groupId>org.eclipse.platform</groupId>
+									<artifactId>org.eclipse.osgi</artifactId>
+									<version>3.21.0</version>
+									<outputDirectory>${deploy.path.lib} </outputDirectory>
+								</artifactItem>
+								<!-- Logging -->
+								<artifactItem>
+									<groupId>org.slf4j</groupId>
+									<artifactId>slf4j-api</artifactId>
+									<version>2.0.16</version>
+									<outputDirectory>${deploy.path.lib} </outputDirectory>
+								</artifactItem>
+								<artifactItem>
+									<groupId>ch.qos.logback</groupId>
+									<artifactId>logback-classic</artifactId>
+									<version>1.5.7</version>
+									<outputDirectory>${deploy.path.lib} </outputDirectory>
+								</artifactItem>
+								<artifactItem>
+									<groupId>ch.qos.logback</groupId>
+									<artifactId>logback-core</artifactId>
+									<version>1.5.7</version>
+									<outputDirectory>${deploy.path.lib} </outputDirectory>
+								</artifactItem>
+								<!-- Application Configuration Support -->
+								<artifactItem>
+									<groupId>com.typesafe</groupId>
+									<artifactId>config</artifactId>
+									<version>1.4.3</version>
 									<outputDirectory>${deploy.path.lib} </outputDirectory>
 								</artifactItem>
 							</artifactItems>

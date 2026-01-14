@@ -1,9 +1,9 @@
-.settings
+.bak/
+.settings/
 bundle-cache/
-classes/
 log/
+target/
 plugins/
 workspace/
 .classpath
 .project
-/target/

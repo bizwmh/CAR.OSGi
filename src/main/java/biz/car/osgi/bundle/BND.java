@@ -63,6 +63,22 @@ public class BND {
 	}
 
 	/**
+	 * Converts a type integer for a framework event to a string.
+	 * 
+	 * @param aType the integer value for the type
+	 * @return the type as a string
+	 */
+	public static String serviceEvent(int aType) {
+		String l_ret = Integer.toString(aType);
+		String l_state = "SERVICE_EVENT" + l_ret; //$NON-NLS-1$
+
+		if (conf.hasPath(l_state)) {
+			l_ret = conf.getString(l_state);
+		}
+		return l_ret;
+	}
+
+	/**
 	 * Converts a state integer to a string.
 	 * 
 	 * @param aState the integer value for the state

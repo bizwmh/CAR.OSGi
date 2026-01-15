@@ -6,15 +6,15 @@
 
 package biz.car.osgi.framework;
 
-import static org.osgi.framework.Constants.*;
+import static org.osgi.framework.Constants.SYSTEM_BUNDLE_ID;
 
-import biz.car.osgi.bundle.BND;
-import biz.car.osgi.bundle.MSG;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleEvent;
 import org.osgi.framework.BundleListener;
 
-import biz.wmh.car.SYS;
+import biz.car.osgi.bundle.BND;
+import biz.car.osgi.bundle.DIAG;
+import biz.car.osgi.bundle.MSG;
 
 /**
  * A listener for the events of a bundle in the OSGi framework.
@@ -30,7 +30,7 @@ public class XBundleListener implements BundleListener {
         String l_name = l_bundle.getSymbolicName();
 
         if (l_bundle.getBundleId() != SYSTEM_BUNDLE_ID) {
-            SYS.LOG.info(MSG.BUNDLE_EVENT, l_name, BND.bundleEvent(l_ev));
+        	DIAG.LOG.info(MSG.BUNDLE_EVENT, l_name, BND.bundleEvent(l_ev));
         }
     }
 }

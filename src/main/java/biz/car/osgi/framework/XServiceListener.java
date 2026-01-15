@@ -6,9 +6,9 @@
 
 package biz.car.osgi.framework;
 
-import org.osgi.framework.Bundle;
-import org.osgi.framework.FrameworkEvent;
-import org.osgi.framework.FrameworkListener;
+import org.osgi.framework.ServiceEvent;
+import org.osgi.framework.ServiceListener;
+import org.osgi.framework.ServiceReference;
 
 import biz.car.osgi.bundle.BND;
 import biz.car.osgi.bundle.DIAG;
@@ -19,21 +19,21 @@ import biz.car.osgi.bundle.MSG;
  *
  * @version 2.0.0 08.01.2026 11:00:50
  */
-public class XFrameworkListener implements FrameworkListener {
+public class XServiceListener implements ServiceListener {
 
 	/**
 	 * Creates a default <code>XFrameworkListener</code> instance.
 	 */
-	public XFrameworkListener() {
+	public XServiceListener() {
 		super();
 	}
 
 	@Override
-	public void frameworkEvent(FrameworkEvent anEvent) {
-		Bundle l_bundle = anEvent.getBundle();
+	public void serviceChanged(ServiceEvent anEvent) {
+		ServiceReference<?> l_ref = anEvent.getServiceReference();
 		int l_type = anEvent.getType();
-		String l_event = BND.frameworkEvent(l_type);
+		String l_event = BND.serviceEvent(l_type);
 
-		DIAG.LOG.info(MSG.FRAMEWORK_EVENT, l_event, l_bundle.getSymbolicName());
+		DIAG.LOG.info(MSG.SERVICE_EVENT, l_event, l_ref.toString());
 	}
 }

@@ -25,6 +25,7 @@ public class MSG {
 	public static String FWK_STOPPED;
 	public static String FWK_TERMINATED;
 	public static String PROPERTIES_LOADED;
+	public static String SERVICE_EVENT;
 
 	// -------------------------------------------------------------------------
 	// Initialize the static fields

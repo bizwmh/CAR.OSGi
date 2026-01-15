@@ -21,6 +21,7 @@ import org.osgi.framework.startlevel.dto.BundleStartLevelDTO;
 import org.osgi.framework.startlevel.dto.FrameworkStartLevelDTO;
 
 import biz.car.osgi.bundle.BND;
+import biz.car.osgi.bundle.DIAG;
 import biz.car.osgi.bundle.MSG;
 import biz.wmh.car.SYS;
 import biz.wmh.car.util.XTimestamp;
@@ -49,6 +50,12 @@ public class XFramework {
 	 */
 	public static void init(Map<String, String> aConfig) {
 		try {
+			// Publish the diagnose logger
+			String l_key = "framework.logger.diagnose"; //$NON-NLS-1$
+			String l_name = DIAG.LOG.logger().getName();
+			
+			aConfig.put(l_key,l_name);
+			
 			// Create an instance of the OSGi framework.
 			fwk = XFrameworkFactory.get(aConfig);
 
@@ -56,16 +63,18 @@ public class XFramework {
 			XFrameworkListener l_fl = new XFrameworkListener();
 
 			// Initialize the OSGi framework using the framework listener
-			// the listener only catches event during init
+			// the listener only catches events during init phase
 			fwk.init(l_fl);
 			SYS.LOG.info(MSG.FWK_INITIALIZED, fwk.getSymbolicName(), fwk.getVersion());
-			debug();
 
+			// Re-Activate framework for listening after init
+			getBundleContext().addFrameworkListener(l_fl);
+			// Activate Service Listener
+			XServiceListener l_sl = new XServiceListener();
+			getBundleContext().addServiceListener(l_sl);
 			// Activate Bundle Listener
 			XBundleListener l_bl = new XBundleListener();
 			getBundleContext().addBundleListener(l_bl);
-			// Re-Activate framework for listening after init
-			getBundleContext().addFrameworkListener(l_fl);
 		} catch (BundleException anEx) {
 			SYS.LOG.exception(anEx);
 			throw SYS.LOG.exception(MSG.FWK_INIT_ERROR);
@@ -83,7 +92,9 @@ public class XFramework {
 				// Start the framework
 				fwk.start();
 				SYS.LOG.info(MSG.FWK_STARTED);
-				debug();
+
+				// Create diagnostic entries in the diagnose log
+				diagnose();
 
 				// Wait for framework to stop to exit the VM
 				l_event = fwk.waitForStop(0);
@@ -119,10 +130,7 @@ public class XFramework {
 	/**
 	 * Writes the framework properties and bundle information to the log file.
 	 */
-	private static void debug() {
-		if (!SYS.LOG.isDebugEnabled())
-			return;
-
+	private static void diagnose() {
 		FrameworkDTO l_dto = fwk.adapt(FrameworkDTO.class);
 		FrameworkStartLevelDTO l_sl = fwk.adapt(FrameworkStartLevelDTO.class);
 		Map<String, Object> l_props = l_dto.properties;
@@ -137,7 +145,7 @@ public class XFramework {
 					l_bProps.append(entry.getValue());
 				});
 		l_bProps.append("\n\n\t\t\t\tStartlevel = " + l_sl.startLevel); //$NON-NLS-1$
-		SYS.LOG.debug("Framework Properties {}", l_bProps); //$NON-NLS-1$
+		DIAG.LOG.info("Framework Properties {}", l_bProps); //$NON-NLS-1$
 
 		// list the info about the installed bundles
 		Arrays.asList(l_bundles).stream()
@@ -154,10 +162,9 @@ public class XFramework {
 					l_bBundle.append("\n\t\t\t\tupdated    " + l_ts.toString()); //$NON-NLS-1$
 					l_bBundle.append("\n\t\t\t\tStartlevel " + l_bsl.startLevel); //$NON-NLS-1$
 					l_bBundle.append("\n\t\t\t\tLocation   " + bundle.getLocation()); //$NON-NLS-1$
-					l_bBundle.append("\n\t\t\t\tData Area  " + bundle.getDataFile("")); //$NON-NLS-1$ //$NON-NLS-2$
 
 					return l_bBundle;
 				})
-				.forEach(info -> SYS.LOG.debug(info.toString()));
+				.forEach(info -> DIAG.LOG.info(info.toString()));
 	}
 }

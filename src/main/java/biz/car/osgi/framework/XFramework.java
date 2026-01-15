@@ -56,6 +56,7 @@ public class XFramework {
 			XFrameworkListener l_fl = new XFrameworkListener();
 
 			// Initialize the OSGi framework using the framework listener
+			// the listener only catches event during init
 			fwk.init(l_fl);
 			SYS.LOG.info(MSG.FWK_INITIALIZED, fwk.getSymbolicName(), fwk.getVersion());
 			debug();
@@ -63,6 +64,8 @@ public class XFramework {
 			// Activate Bundle Listener
 			XBundleListener l_bl = new XBundleListener();
 			getBundleContext().addBundleListener(l_bl);
+			// Re-Activate framework for listening after init
+			getBundleContext().addFrameworkListener(l_fl);
 		} catch (BundleException anEx) {
 			SYS.LOG.exception(anEx);
 			throw SYS.LOG.exception(MSG.FWK_INIT_ERROR);

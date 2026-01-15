@@ -11,6 +11,7 @@ import org.osgi.framework.FrameworkEvent;
 import org.osgi.framework.FrameworkListener;
 
 import biz.wmh.car.SYS;
+import biz.car.osgi.bundle.BND;
 import biz.car.osgi.bundle.MSG;
 
 /**
@@ -31,7 +32,8 @@ public class XFrameworkListener implements FrameworkListener {
 	public void frameworkEvent(FrameworkEvent anEvent) {
 		Bundle l_bundle = anEvent.getBundle();
 		int l_type = anEvent.getType();
+		String l_event = BND.frameworkEvent(l_type);
 
-		SYS.LOG.info(MSG.FRAMEWORK_EVENT, l_type, l_bundle.getSymbolicName());
+		SYS.LOG.info(MSG.FRAMEWORK_EVENT, l_event, l_bundle.getSymbolicName());
 	}
 }

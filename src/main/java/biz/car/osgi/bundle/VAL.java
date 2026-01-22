@@ -6,7 +6,7 @@
 
 package biz.car.osgi.bundle;
 
-import biz.wmh.car.util.SFI;
+import biz.car.util.SFI;
 
 /**
  * Bundle constants.
@@ -16,9 +16,14 @@ import biz.wmh.car.util.SFI;
 public class VAL {
 
 	public static String bundle_startLevel;
+	public static String diagnoseLogger;
+	public static String framework;
 	public static String framework_configuration_area;
 	public static String framework_data_area;
+	public static String framework_logger_diagnose;
 	public static String osgi_install_area;
+	public static String osgi_instance_area;
+	public static String system;
 
 	// -------------------------------------------------------------------------
 	// Initialize the static fields

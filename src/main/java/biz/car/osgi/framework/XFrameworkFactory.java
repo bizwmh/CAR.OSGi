@@ -13,8 +13,8 @@ import java.util.ServiceLoader;
 import org.osgi.framework.launch.Framework;
 import org.osgi.framework.launch.FrameworkFactory;
 
-import biz.wmh.car.SYS;
-import biz.wmh.car.bundle.MSG;
+import biz.car.SYS;
+import biz.car.bundle.MSG;
 
 /**
  * Creates a new instance of the OSGi framework.

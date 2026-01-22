@@ -6,11 +6,11 @@
 
 package biz.car.osgi.bundle;
 
-import static biz.wmh.car.VAL._properties;
+import static biz.car.bundle.VAL._properties;
 
 import com.typesafe.config.Config;
 
-import biz.wmh.car.config.ACS;
+import biz.car.config.ACS;
 
 /**
  * Framework specific keys for runtime options.

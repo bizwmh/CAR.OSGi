@@ -6,7 +6,7 @@
 
 package biz.car.osgi.bundle;
 
-import biz.wmh.car.config.ACS;
+import biz.car.config.ACS;
 
 /**
  * Bundle messages.
@@ -26,6 +26,8 @@ public class MSG {
 	public static String FWK_TERMINATED;
 	public static String PROPERTIES_LOADED;
 	public static String SERVICE_EVENT;
+	public static String WATCHER_STARTED;
+	public static String WATCHER_STOPPED;
 
 	// -------------------------------------------------------------------------
 	// Initialize the static fields

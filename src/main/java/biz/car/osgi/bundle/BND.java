@@ -8,7 +8,7 @@ package biz.car.osgi.bundle;
 
 import com.typesafe.config.Config;
 
-import biz.wmh.car.config.ACS;
+import biz.car.config.ACS;
 
 /**
  * Bundle Constants.
@@ -17,6 +17,7 @@ import biz.wmh.car.config.ACS;
  */
 public class BND {
 
+	public static String DIRECTORY_WATCHER;
 	public static String FRAMEWORK;
 	public static String OSGI_MAIN;
 	public static String SHUTDOWN_HOOK;

@@ -4,9 +4,9 @@
  * Use of this software is subject to license terms. All Rights Reserved.
  * -------------------------------------------------------------------------- */
 
-package biz.car.osgi.bundle;
+package biz.wmh.car.osgi.bundle;
 
-import biz.car.util.SFI;
+import biz.wmh.car.util.SFI;
 
 /**
  * Bundle constants.
@@ -20,6 +20,7 @@ public class VAL {
 	public static String framework;
 	public static String framework_configuration_area;
 	public static String framework_data_area;
+	public static String framework_hotdeploy_enabled;
 	public static String framework_logger_diagnose;
 	public static String osgi_install_area;
 	public static String osgi_instance_area;

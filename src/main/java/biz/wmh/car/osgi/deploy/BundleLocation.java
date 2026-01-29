@@ -4,7 +4,7 @@
  * Use of this software is subject to license terms. All Rights Reserved. 
  * -------------------------------------------------------------------------- */
 
-package biz.car.osgi.deploy;
+package biz.wmh.car.osgi.deploy;
 
 import java.io.File;
 
@@ -13,7 +13,7 @@ import java.io.File;
  *
  * @version 2.0.0 21.01.2026 10:17:49
  */
-public class BundleLocation {
+public interface BundleLocation {
 
 	/**
 	 * Converts a file paht name to the URI string.
@@ -21,7 +21,7 @@ public class BundleLocation {
 	 * @param aPath the name of the file paht
 	 * @return the string representation of the file URI.
 	 */
-	public static String toURI(String aPath) {
+	static String toURI(String aPath) {
 		String l_ret = aPath;
 		File l_file = new File(aPath);
 
@@ -29,12 +29,5 @@ public class BundleLocation {
 			l_ret = l_file.toURI().toString();
 		}
 		return l_ret;
-	}
-
-	/**
-	 * Creates a default <code>BundleLocation</code> instance.
-	 */
-	public BundleLocation() {
-		super();
 	}
 }

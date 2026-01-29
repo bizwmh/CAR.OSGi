@@ -4,9 +4,9 @@
  * Use of this software is subject to license terms. All Rights Reserved. 
  * -------------------------------------------------------------------------- */
 
-package biz.car.osgi.deploy;
+package biz.wmh.car.osgi.deploy;
 
-import static biz.car.osgi.bundle.VAL.osgi_install_area;
+import static biz.wmh.car.osgi.bundle.VAL.osgi_install_area;
 
 import java.io.File;
 import java.net.URI;
@@ -21,11 +21,11 @@ import org.osgi.framework.BundleContext;
 import org.osgi.framework.BundleException;
 import org.osgi.framework.startlevel.BundleStartLevel;
 
-import biz.car.CAR;
-import biz.car.SYS;
-import biz.car.osgi.bundle.KEY;
-import biz.car.osgi.bundle.VAL;
-import biz.car.osgi.framework.XFramework;
+import biz.wmh.car.CAR;
+import biz.wmh.car.SYS;
+import biz.wmh.car.osgi.bundle.KEY;
+import biz.wmh.car.osgi.bundle.VAL;
+import biz.wmh.car.osgi.framework.XFramework;
 
 /**
  * Functions related to the OSGi installation area.
@@ -35,6 +35,15 @@ import biz.car.osgi.framework.XFramework;
 public class InstallArea implements CAR {
 
 	private static Pattern areaPath = Pattern.compile("(\\/\\d{2})"); //$NON-NLS-1$
+	private static final InstallAreaWatcher watcher = new InstallAreaWatcher();
+
+	/**
+	 * @return a reference to the singleton <code>InstallAreaWatcher</code>
+	 *         instance.
+	 */
+	public static InstallAreaWatcher watcher() {
+		return watcher;
+	}
 
 	private List<String> jars;
 
@@ -43,7 +52,7 @@ public class InstallArea implements CAR {
 	 */
 	public InstallArea() {
 		super();
-		
+
 		jars = jarFiles();
 	}
 
@@ -62,15 +71,6 @@ public class InstallArea implements CAR {
 	}
 
 	/**
-	 * Cleanup internal storage.
-	 */
-	public void dispose() {
-		jars.clear();
-		
-		jars = null;
-	}
-
-	/**
 	 * Synchronizes the jars in the install area with the bundles in the bundle
 	 * storage.<br>
 	 * Three cases are covered:
@@ -83,23 +83,30 @@ public class InstallArea implements CAR {
 	 * not started.
 	 * </ul>
 	 * 
-	 * @param aStorage a reference to the current bundle storage
 	 * @return the list of newly installed bundles
 	 */
-	public List<Bundle> reconcile(BundleStorage aStorage) {
+	public List<Bundle> reconcile() {
+		BundleStorage l_bs = new BundleStorage();
 		List<Bundle> l_ret = new ArrayList<Bundle>();
 
+		l_bs.uninstallBundles(this);
+
 		for (String l_location : jars) {
-			Bundle l_bundle = aStorage.getBundle(l_location);
+			Bundle l_bundle = l_bs.getBundle(l_location);
 
 			if (l_bundle == null) {
 				l_bundle = install(l_location);
 
 				l_ret.add(l_bundle);
 			} else {
-				update(l_bundle);
+				if (update(l_bundle)) {
+					l_ret.add(l_bundle);
+				}
 			}
 		}
+		l_bs.dispose();
+		jars.clear();
+
 		return l_ret;
 	}
 
@@ -175,7 +182,8 @@ public class InstallArea implements CAR {
 	 * 
 	 * @param aBundle the bundle to update
 	 */
-	private void update(Bundle aBundle) {
+	private boolean update(Bundle aBundle) {
+		boolean l_ret = false;
 		long l_blm = aBundle.getLastModified();
 		String l_loc = aBundle.getLocation();
 		try {
@@ -184,8 +192,11 @@ public class InstallArea implements CAR {
 			long l_jlm = l_jar.lastModified();
 
 			if (l_jlm > l_blm) {
+				l_ret = true;
+
 				aBundle.update();
 			}
+			return l_ret;
 		} catch (Exception anEx) {
 			throw SYS.LOG.exception(anEx);
 		}

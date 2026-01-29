@@ -4,9 +4,9 @@
  * Use of this software is subject to license terms. All Rights Reserved. 
  * -------------------------------------------------------------------------- */
 
-package biz.car.osgi.bundle;
+package biz.wmh.car.osgi.bundle;
 
-import biz.car.config.ACS;
+import biz.wmh.car.config.ACS;
 
 /**
  * Bundle messages.
@@ -16,6 +16,9 @@ import biz.car.config.ACS;
 public class MSG {
 
 	public static String BUNDLE_EVENT;
+	public static String BUNDLE_WATCHER_STARTED;
+	public static String BUNDLE_WATCHER_STOPPED;
+	public static String DIRECTORY_REGISTERED;
 	public static String FRAMEWORK_EVENT;
 	public static String FWK_ABENDED;
 	public static String FWK_INIT_ERROR;
@@ -25,9 +28,8 @@ public class MSG {
 	public static String FWK_STOPPED;
 	public static String FWK_TERMINATED;
 	public static String PROPERTIES_LOADED;
+	public static String REFRESH_TIMEOUT;
 	public static String SERVICE_EVENT;
-	public static String WATCHER_STARTED;
-	public static String WATCHER_STOPPED;
 
 	// -------------------------------------------------------------------------
 	// Initialize the static fields

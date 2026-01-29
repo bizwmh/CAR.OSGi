@@ -4,10 +4,10 @@
  * Use of this software is subject to license terms. All Rights Reserved. 
  * -------------------------------------------------------------------------- */
 
-package biz.car.osgi;
+package biz.wmh.car.osgi;
 
-import static biz.car.bundle.VAL._default;
-import static biz.car.bundle.VAL._properties;
+import static biz.wmh.car.bundle.VAL._default;
+import static biz.wmh.car.bundle.VAL._properties;
 
 import java.io.File;
 import java.util.HashMap;
@@ -17,16 +17,17 @@ import java.util.Optional;
 import com.typesafe.config.Config;
 import com.typesafe.config.ConfigFactory;
 
-import biz.car.SYS;
-import biz.car.XRuntimeException;
-import biz.car.config.ACS;
-import biz.car.config.XConfig;
-import biz.car.osgi.bundle.BND;
-import biz.car.osgi.bundle.KEY;
-import biz.car.osgi.bundle.MSG;
-import biz.car.osgi.bundle.VAL;
-import biz.car.osgi.deploy.Deployer;
-import biz.car.osgi.framework.XFramework;
+import biz.wmh.car.SYS;
+import biz.wmh.car.XRuntimeException;
+import biz.wmh.car.config.ACS;
+import biz.wmh.car.config.XConfig;
+import biz.wmh.car.osgi.bundle.BND;
+import biz.wmh.car.osgi.bundle.KEY;
+import biz.wmh.car.osgi.bundle.MSG;
+import biz.wmh.car.osgi.bundle.VAL;
+import biz.wmh.car.osgi.deploy.Deployer;
+import biz.wmh.car.osgi.deploy.InstallArea;
+import biz.wmh.car.osgi.framework.XFramework;
 
 /**
  * Initializes and starts the OSGi framework.
@@ -117,6 +118,12 @@ public class Launcher implements Runnable {
 			
 			l_deployer.processInstallArea();
 
+			// Start hot deployment if enabled
+			boolean l_enabled = l_fwkProps.getBoolean(VAL.framework_hotdeploy_enabled);
+			
+			if (l_enabled) {
+				InstallArea.watcher().start();
+			}
 			// start the framework and wait for stop to exit the VM
 			XFramework.start();
 		} catch (XRuntimeException anEx) {

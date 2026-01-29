@@ -4,14 +4,14 @@
  * Use of this software is subject to license terms. All Rights Reserved. 
  * -------------------------------------------------------------------------- */
 
-package biz.car.osgi.deploy;
+package biz.wmh.car.osgi.deploy;
 
 import java.util.List;
 
 import org.osgi.framework.Bundle;
-import org.osgi.framework.Constants;
 
-import biz.car.SYS;
+import biz.wmh.car.SYS;
+import biz.wmh.car.osgi.framework.XFramework;
 
 /**
  * The processor of the jar files in the installation area for the OSGi
@@ -20,7 +20,7 @@ import biz.car.SYS;
  * @version 2.0.0 21.01.2026 10:16:53
  */
 public class Deployer {
-	
+
 	/**
 	 * Creates a default <code>Deployer</code> instance.
 	 */
@@ -29,25 +29,36 @@ public class Deployer {
 	}
 
 	/**
+	 * Processes the installation area after a change in the install area when the
+	 * framework is already running.<br>
+	 * Processes the complete deployment cycle: 1. Reconcile bundles
+	 * (uninstall/update/install) 2. Refresh framework 3. Wait for
+	 * PACKAGES_REFRESHED 4. Start new/updated bundles
+	 */
+	public void processDeploymentCycle() {
+		InstallArea l_area = new InstallArea();
+		List<Bundle> l_bl = l_area.reconcile();
+
+		if (l_bl.size() > 0) {
+			XFramework.refreshAndWait();
+			startBundles(l_bl);
+		}
+	}
+
+	/**
 	 * Processes the installation area after the framework is initialized.
 	 */
 	public void processInstallArea() {
-		BundleStorage l_bs = new BundleStorage();
 		InstallArea l_area = new InstallArea();
-		
-		l_bs.uninstallBundles(l_area);
-		
-		List<Bundle> l_bl = l_area.reconcile(l_bs);
-		
+		List<Bundle> l_bl = l_area.reconcile();
+
 		startBundles(l_bl);
-		l_bs.dispose();
-		l_area.dispose();
 	}
 
 	private void startBundles(List<Bundle> aBundles) {
 		// start bundles if not fragment
 		for (Bundle l_installed : aBundles) {
-			if (!isFragment(l_installed)) {
+			if (!XFramework.isFragment(l_installed)) {
 				try {
 					// Nutzung von START_TRANSIENT verhindert, dass der Start-Status
 					// persistent gespeichert wird (sauberer für Development)
@@ -58,9 +69,5 @@ public class Deployer {
 				}
 			}
 		}
-	}
-
-	private boolean isFragment(Bundle aBundle) {
-		return aBundle.getHeaders().get(Constants.FRAGMENT_HOST) != null;
 	}
 }

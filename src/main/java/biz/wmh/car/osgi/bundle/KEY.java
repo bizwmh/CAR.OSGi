@@ -4,13 +4,13 @@
  * Use of this software is subject to license terms. All Rights Reserved.
  * -------------------------------------------------------------------------- */
 
-package biz.car.osgi.bundle;
+package biz.wmh.car.osgi.bundle;
 
-import static biz.car.bundle.VAL._properties;
+import static biz.wmh.car.bundle.VAL._properties;
 
 import com.typesafe.config.Config;
 
-import biz.car.config.ACS;
+import biz.wmh.car.config.ACS;
 
 /**
  * Framework specific keys for runtime options.

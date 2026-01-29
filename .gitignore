@@ -1,4 +1,5 @@
 .settings/
+.tmp.driveupload/
 bundle-cache/
 log/
 target/

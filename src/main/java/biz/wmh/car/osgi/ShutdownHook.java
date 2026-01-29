@@ -4,9 +4,10 @@
  * Use of this software is subject to license terms. All Rights Reserved. 
  * -------------------------------------------------------------------------- */
 
-package biz.car.osgi;
+package biz.wmh.car.osgi;
 
-import biz.car.osgi.framework.XFramework;
+import biz.wmh.car.osgi.deploy.InstallArea;
+import biz.wmh.car.osgi.framework.XFramework;
 
 /**
  * The hook to make sure that the framework is cleanly shutdown when the VM
@@ -25,6 +26,7 @@ public class ShutdownHook implements Runnable {
 
 	@Override
 	public void run() {
+		InstallArea.watcher().stop();
 		XFramework.stop(); // stop the OSGi framework
 	}
 }

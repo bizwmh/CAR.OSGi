@@ -4,20 +4,24 @@
  * Use of this software is subject to license terms. All Rights Reserved. 
  * -------------------------------------------------------------------------- */
 
-package biz.car.osgi.framework;
+package biz.wmh.car.osgi.framework;
 
 import java.util.Map;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
 
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.BundleException;
-import org.osgi.framework.Constants;
 import org.osgi.framework.FrameworkEvent;
+import org.osgi.framework.FrameworkListener;
 import org.osgi.framework.launch.Framework;
 import org.osgi.framework.wiring.FrameworkWiring;
 
-import biz.car.SYS;
-import biz.car.osgi.bundle.MSG;
+import biz.wmh.car.SYS;
+import biz.wmh.car.osgi.bundle.BND;
+import biz.wmh.car.osgi.bundle.MSG;
+import biz.wmh.car.util.Delay;
 
 /**
  * Facade to the OSGi framework implementation.
@@ -27,7 +31,12 @@ import biz.car.osgi.bundle.MSG;
 public class XFramework {
 
 	private static Framework fwk;
-
+	private static final long REFRESH_TIMEOUT;
+	
+	static {
+		REFRESH_TIMEOUT = Delay.Period.apply(BND.FRAMEWORK_REFREH_TIMEOUT);
+	}
+	
 	/**
 	 * @return a reference to the framework bundle context.
 	 */
@@ -69,14 +78,56 @@ public class XFramework {
 	}
 
 	/**
-	 * Resolve the package wiring of all bundles in the framework.
+	 * Checks if a bundle is a fragment.
+	 * 
+	 * @param aBundle the bundle to check
+	 * @return true if the bundle is a fragment
 	 */
-	public static void resolveBundles() {
-		BundleContext l_ctx = context();
-		Bundle l_sb = l_ctx.getBundle(Constants.SYSTEM_BUNDLE_ID);
-		FrameworkWiring l_wire = l_sb.adapt(FrameworkWiring.class);
+	public static boolean isFragment(Bundle aBundle) {
+		return aBundle.getHeaders().get(org.osgi.framework.Constants.FRAGMENT_HOST) != null;
+	}
 
-		l_wire.resolveBundles(null); // all framework bundles
+	/**
+	 * Refreshes all bundle dependencies, waits for the PACKAGES REFRESHED event and
+	 * then returns to the caller.
+	 */
+	public static void refreshAndWait() {
+		// Create a latch to wait for refresh completion
+		final CountDownLatch l_refreshLatch = new CountDownLatch(1);
+
+		// Create framework listener for PACKAGES_REFRESHED event
+		FrameworkListener l_refreshListener = new FrameworkListener() {
+			@Override
+			public void frameworkEvent(FrameworkEvent event) {
+				if (event.getType() == FrameworkEvent.PACKAGES_REFRESHED) {
+					l_refreshLatch.countDown();
+				}
+			}
+		};
+
+		try {
+			// Register the listener
+			context().addFrameworkListener(l_refreshListener);
+
+			// Trigger framework refresh
+			Bundle l_systemBundle = context().getBundle(0);
+			FrameworkWiring l_frameworkWiring = l_systemBundle.adapt(FrameworkWiring.class);
+
+			// Refresh all bundles (null = all bundles)
+			l_frameworkWiring.refreshBundles(null, l_refreshListener);
+
+			// Wait for PACKAGES_REFRESHED event
+			boolean l_refreshed = l_refreshLatch.await(REFRESH_TIMEOUT, TimeUnit.MILLISECONDS);
+
+			if (!l_refreshed) {
+				SYS.LOG.warn(MSG.REFRESH_TIMEOUT, REFRESH_TIMEOUT);
+			}
+		} catch (InterruptedException anEx) {
+			throw SYS.LOG.exception(anEx);
+		} finally {
+			// Always remove the listener
+			context().removeFrameworkListener(l_refreshListener);
+		}
 	}
 
 	/**

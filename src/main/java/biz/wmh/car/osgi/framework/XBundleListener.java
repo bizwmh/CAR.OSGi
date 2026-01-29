@@ -4,7 +4,7 @@
  * Use of this software is subject to license terms. All Rights Reserved.
  * -------------------------------------------------------------------------- */
 
-package biz.car.osgi.framework;
+package biz.wmh.car.osgi.framework;
 
 import static org.osgi.framework.Constants.SYSTEM_BUNDLE_ID;
 
@@ -12,9 +12,9 @@ import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleEvent;
 import org.osgi.framework.BundleListener;
 
-import biz.car.osgi.bundle.BND;
-import biz.car.osgi.bundle.DIAG;
-import biz.car.osgi.bundle.MSG;
+import biz.wmh.car.osgi.bundle.BND;
+import biz.wmh.car.osgi.bundle.DIAG;
+import biz.wmh.car.osgi.bundle.MSG;
 
 /**
  * A listener for the events of a bundle in the OSGi framework.

@@ -4,14 +4,14 @@
  * Use of this software is subject to license terms. All Rights Reserved. 
  * -------------------------------------------------------------------------- */
 
-package biz.car.osgi.bundle;
+package biz.wmh.car.osgi.bundle;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import biz.car.ILogger;
-import biz.car.XLogger;
-import biz.car.config.ACS;
+import biz.wmh.car.ILogger;
+import biz.wmh.car.XLogger;
+import biz.wmh.car.config.ACS;
 
 /**
  * The logger for diagnostic purposes.

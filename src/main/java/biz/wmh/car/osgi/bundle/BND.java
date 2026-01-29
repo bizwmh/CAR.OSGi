@@ -4,11 +4,11 @@
  * Use of this software is subject to license terms. All Rights Reserved.
  * -------------------------------------------------------------------------- */
 
-package biz.car.osgi.bundle;
+package biz.wmh.car.osgi.bundle;
 
 import com.typesafe.config.Config;
 
-import biz.car.config.ACS;
+import biz.wmh.car.config.ACS;
 
 /**
  * Bundle Constants.
@@ -17,8 +17,9 @@ import biz.car.config.ACS;
  */
 public class BND {
 
-	public static String DIRECTORY_WATCHER;
+	public static String BUNDLE_WATCHER;
 	public static String FRAMEWORK;
+	public static String FRAMEWORK_REFREH_TIMEOUT;
 	public static String OSGI_MAIN;
 	public static String SHUTDOWN_HOOK;
 

@@ -4,10 +4,10 @@
  * Use of this software is subject to license terms. All Rights Reserved. 
  * -------------------------------------------------------------------------- */
 
-package biz.wmh.car.osgi;
+package biz.car.osgi;
 
-import biz.wmh.car.osgi.deploy.InstallArea;
-import biz.wmh.car.osgi.framework.XFramework;
+import biz.car.osgi.deploy.InstallArea;
+import biz.car.osgi.framework.XFramework;
 
 /**
  * The hook to make sure that the framework is cleanly shutdown when the VM

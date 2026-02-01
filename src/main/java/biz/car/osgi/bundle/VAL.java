@@ -4,9 +4,9 @@
  * Use of this software is subject to license terms. All Rights Reserved.
  * -------------------------------------------------------------------------- */
 
-package biz.wmh.car.osgi.bundle;
+package biz.car.osgi.bundle;
 
-import biz.wmh.car.util.SFI;
+import biz.car.util.SFI;
 
 /**
  * Bundle constants.

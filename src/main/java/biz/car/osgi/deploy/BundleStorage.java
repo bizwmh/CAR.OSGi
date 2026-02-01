@@ -4,9 +4,9 @@
  * Use of this software is subject to license terms. All Rights Reserved. 
  * -------------------------------------------------------------------------- */
 
-package biz.wmh.car.osgi.deploy;
+package biz.car.osgi.deploy;
 
-import static biz.wmh.car.osgi.bundle.VAL.osgi_install_area;
+import static biz.car.osgi.bundle.VAL.osgi_install_area;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,8 +17,8 @@ import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.BundleException;
 
-import biz.wmh.car.SYS;
-import biz.wmh.car.osgi.framework.XFramework;
+import biz.car.SYS;
+import biz.car.osgi.framework.XFramework;
 
 /**
  * Represents the OSGi storage for caching the bundles of the framework.

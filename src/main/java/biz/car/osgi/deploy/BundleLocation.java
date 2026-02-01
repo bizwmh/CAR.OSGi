@@ -4,7 +4,7 @@
  * Use of this software is subject to license terms. All Rights Reserved. 
  * -------------------------------------------------------------------------- */
 
-package biz.wmh.car.osgi.deploy;
+package biz.car.osgi.deploy;
 
 import java.io.File;
 

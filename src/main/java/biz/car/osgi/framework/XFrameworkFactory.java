@@ -4,7 +4,7 @@
  * Use of this software is subject to license terms. All Rights Reserved.
  * -------------------------------------------------------------------------- */
 
-package biz.wmh.car.osgi.framework;
+package biz.car.osgi.framework;
 
 import java.util.Map;
 import java.util.Optional;
@@ -13,8 +13,8 @@ import java.util.ServiceLoader;
 import org.osgi.framework.launch.Framework;
 import org.osgi.framework.launch.FrameworkFactory;
 
-import biz.wmh.car.SYS;
-import biz.wmh.car.bundle.MSG;
+import biz.car.SYS;
+import biz.car.bundle.MSG;
 
 /**
  * Creates a new instance of the OSGi framework.

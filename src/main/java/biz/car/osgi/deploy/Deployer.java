@@ -4,14 +4,14 @@
  * Use of this software is subject to license terms. All Rights Reserved. 
  * -------------------------------------------------------------------------- */
 
-package biz.wmh.car.osgi.deploy;
+package biz.car.osgi.deploy;
 
 import java.util.List;
 
 import org.osgi.framework.Bundle;
 
-import biz.wmh.car.SYS;
-import biz.wmh.car.osgi.framework.XFramework;
+import biz.car.SYS;
+import biz.car.osgi.framework.XFramework;
 
 /**
  * The processor of the jar files in the installation area for the OSGi

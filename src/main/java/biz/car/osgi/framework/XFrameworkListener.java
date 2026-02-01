@@ -4,15 +4,15 @@
  * Use of this software is subject to license terms. All Rights Reserved. 
  * -------------------------------------------------------------------------- */
 
-package biz.wmh.car.osgi.framework;
+package biz.car.osgi.framework;
 
 import org.osgi.framework.Bundle;
 import org.osgi.framework.FrameworkEvent;
 import org.osgi.framework.FrameworkListener;
 
-import biz.wmh.car.osgi.bundle.BND;
-import biz.wmh.car.osgi.bundle.DIAG;
-import biz.wmh.car.osgi.bundle.MSG;
+import biz.car.osgi.bundle.BND;
+import biz.car.osgi.bundle.DIAG;
+import biz.car.osgi.bundle.MSG;
 
 /**
  * Logs the events of the OSGi framework.

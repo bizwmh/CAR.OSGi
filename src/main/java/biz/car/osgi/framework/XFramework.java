@@ -4,7 +4,7 @@
  * Use of this software is subject to license terms. All Rights Reserved. 
  * -------------------------------------------------------------------------- */
 
-package biz.wmh.car.osgi.framework;
+package biz.car.osgi.framework;
 
 import java.util.Map;
 import java.util.concurrent.CountDownLatch;
@@ -18,10 +18,10 @@ import org.osgi.framework.FrameworkListener;
 import org.osgi.framework.launch.Framework;
 import org.osgi.framework.wiring.FrameworkWiring;
 
-import biz.wmh.car.SYS;
-import biz.wmh.car.osgi.bundle.BND;
-import biz.wmh.car.osgi.bundle.MSG;
-import biz.wmh.car.util.Delay;
+import biz.car.SYS;
+import biz.car.osgi.bundle.BND;
+import biz.car.osgi.bundle.MSG;
+import biz.car.util.Delay;
 
 /**
  * Facade to the OSGi framework implementation.

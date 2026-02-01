@@ -4,9 +4,9 @@
  * Use of this software is subject to license terms. All Rights Reserved. 
  * -------------------------------------------------------------------------- */
 
-package biz.wmh.car.osgi;
+package biz.car.osgi;
 
-import biz.wmh.car.osgi.bundle.BND;
+import biz.car.osgi.bundle.BND;
 
 /**
  * Entry points for starting and stopping the OSGi framework.

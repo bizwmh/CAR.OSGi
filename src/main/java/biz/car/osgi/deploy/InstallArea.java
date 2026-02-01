@@ -4,9 +4,9 @@
  * Use of this software is subject to license terms. All Rights Reserved. 
  * -------------------------------------------------------------------------- */
 
-package biz.wmh.car.osgi.deploy;
+package biz.car.osgi.deploy;
 
-import static biz.wmh.car.osgi.bundle.VAL.osgi_install_area;
+import static biz.car.osgi.bundle.VAL.osgi_install_area;
 
 import java.io.File;
 import java.net.URI;
@@ -21,11 +21,11 @@ import org.osgi.framework.BundleContext;
 import org.osgi.framework.BundleException;
 import org.osgi.framework.startlevel.BundleStartLevel;
 
-import biz.wmh.car.CAR;
-import biz.wmh.car.SYS;
-import biz.wmh.car.osgi.bundle.KEY;
-import biz.wmh.car.osgi.bundle.VAL;
-import biz.wmh.car.osgi.framework.XFramework;
+import biz.car.CAR;
+import biz.car.SYS;
+import biz.car.osgi.bundle.KEY;
+import biz.car.osgi.bundle.VAL;
+import biz.car.osgi.framework.XFramework;
 
 /**
  * Functions related to the OSGi installation area.

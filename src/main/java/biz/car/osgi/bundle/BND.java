@@ -4,11 +4,11 @@
  * Use of this software is subject to license terms. All Rights Reserved.
  * -------------------------------------------------------------------------- */
 
-package biz.wmh.car.osgi.bundle;
+package biz.car.osgi.bundle;
 
 import com.typesafe.config.Config;
 
-import biz.wmh.car.config.ACS;
+import biz.car.config.ACS;
 
 /**
  * Bundle Constants.

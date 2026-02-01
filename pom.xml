@@ -3,7 +3,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>biz.wmh.car</groupId>
+	<groupId>biz.car</groupId>
 	<artifactId>car.osgi</artifactId>
 	<version>2.0.0</version>
 	<packaging>jar</packaging>
@@ -14,13 +14,15 @@
 	<properties>
 		<target.deploy.lib>C:/IDE/WORKSPACE/CAR.OSGi/lib</target.deploy.lib>
 		<target.deploy.path>C:/IDE/WORKSPACE/CAR.OSGi/bundles</target.deploy.path>
+		<target.xenv.lib>C:/IDE/XENV/OASE/lib</target.xenv.lib>
+		<target.xenv.path>C:/IDE/XENV/OASE/bundles</target.xenv.path>
 		<maven.compiler.release>17</maven.compiler.release>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
 	<dependencies>
 		<dependency>
-			<groupId>biz.wmh.car</groupId>
+			<groupId>biz.car</groupId>
 			<artifactId>car</artifactId>
 			<version>2.0.0</version>
 		</dependency>
@@ -91,6 +93,7 @@
 						</goals>
 						<configuration>
 							<artifactItems>
+								<!-- Deployment to WORKSPACE -->
 								<!-- OSGi Framework Launcher -->
 								<artifactItem>
 									<groupId>${project.groupId}</groupId>
@@ -254,6 +257,171 @@
 									<artifactId>org.apache.felix.gogo.shell</artifactId>
 									<version>1.1.4</version>
 									<outputDirectory>${target.deploy.path} </outputDirectory>
+								</artifactItem>
+								<!-- Deployment to XENV -->
+								<!-- OSGi Framework Launcher -->
+								<artifactItem>
+									<groupId>${project.groupId}</groupId>
+									<artifactId>${project.artifactId}</artifactId>
+									<version>${project.version}</version>
+									<outputDirectory>${target.xenv.lib} </outputDirectory>
+								</artifactItem>
+								<!-- OSGi Framework -->
+								<artifactItem>
+									<groupId>org.eclipse.platform</groupId>
+									<artifactId>org.eclipse.osgi</artifactId>
+									<version>3.21.0</version>
+									<outputDirectory>${target.xenv.lib} </outputDirectory>
+								</artifactItem>
+								<!-- Logging -->
+								<artifactItem>
+									<groupId>org.slf4j</groupId>
+									<artifactId>slf4j-api</artifactId>
+									<version>2.0.16</version>
+									<outputDirectory>${target.xenv.lib} </outputDirectory>
+								</artifactItem>
+								<artifactItem>
+									<groupId>ch.qos.logback</groupId>
+									<artifactId>logback-classic</artifactId>
+									<version>1.5.7</version>
+									<outputDirectory>${target.xenv.lib} </outputDirectory>
+								</artifactItem>
+								<artifactItem>
+									<groupId>ch.qos.logback</groupId>
+									<artifactId>logback-core</artifactId>
+									<version>1.5.7</version>
+									<outputDirectory>${target.xenv.lib} </outputDirectory>
+								</artifactItem>
+								<!-- Application Configuration Support -->
+								<artifactItem>
+									<groupId>com.typesafe</groupId>
+									<artifactId>config</artifactId>
+									<version>1.4.3</version>
+									<outputDirectory>${target.xenv.lib} </outputDirectory>
+								</artifactItem>
+								<!-- Configuration Admin -->
+								<artifactItem>
+									<groupId>org.apache.felix</groupId>
+									<artifactId>org.apache.felix.configadmin</artifactId>
+									<version>1.9.26</version>
+									<outputDirectory>
+										${target.xenv.path}/02_CM </outputDirectory>
+								</artifactItem>
+								<!-- Metatype Service -->
+								<artifactItem>
+									<groupId>org.apache.felix</groupId>
+									<artifactId>org.apache.felix.metatype</artifactId>
+									<version>1.2.4</version>
+									<outputDirectory>
+										${target.xenv.path}/02_CM </outputDirectory>
+								</artifactItem>
+								<!-- Declarative Services -->
+								<artifactItem>
+									<groupId>org.apache.felix</groupId>
+									<artifactId>org.apache.felix.scr</artifactId>
+									<version>2.2.12</version>
+									<outputDirectory>
+										${target.xenv.path}/03_SERVICE </outputDirectory>
+								</artifactItem>
+								<artifactItem>
+									<groupId>org.osgi</groupId>
+									<artifactId>org.osgi.service.component</artifactId>
+									<version>1.5.1</version>
+									<outputDirectory>
+										${target.xenv.path}/01_API </outputDirectory>
+								</artifactItem>
+								<artifactItem>
+									<groupId>org.osgi</groupId>
+									<artifactId>org.osgi.util.promise</artifactId>
+									<version>1.3.0</version>
+									<outputDirectory>
+										${target.xenv.path}/01_API </outputDirectory>
+								</artifactItem>
+								<artifactItem>
+									<groupId>org.osgi</groupId>
+									<artifactId>org.osgi.util.function</artifactId>
+									<version>1.2.0</version>
+									<outputDirectory>
+										${target.xenv.path}/01_API </outputDirectory>
+								</artifactItem>
+								<!-- Preferences -->
+								<artifactItem>
+									<groupId>org.eclipse.platform</groupId>
+									<artifactId>org.eclipse.equinox.preferences</artifactId>
+									<version>3.11.100</version>
+									<outputDirectory>
+										${target.xenv.path}/03_SERVICE</outputDirectory>
+								</artifactItem>
+								<artifactItem>
+									<groupId>org.osgi</groupId>
+									<artifactId>org.osgi.service.prefs</artifactId>
+									<version>1.1.2</version>
+									<outputDirectory>
+										${target.xenv.path}/01_API </outputDirectory>
+								</artifactItem>
+								<artifactItem>
+									<groupId>org.eclipse.platform</groupId>
+									<artifactId>org.eclipse.equinox.common</artifactId>
+									<version>3.19.100</version>
+									<outputDirectory>
+										${target.xenv.path}/01_API </outputDirectory>
+								</artifactItem>
+								<!-- Event Admin -->
+								<artifactItem>
+									<groupId>org.apache.felix</groupId>
+									<artifactId>org.apache.felix.eventadmin</artifactId>
+									<version>1.6.4</version>
+									<outputDirectory>
+										${target.xenv.path}/03_SERVICE </outputDirectory>
+								</artifactItem>
+								<!-- User Admin Service -->
+								<artifactItem>
+									<groupId>org.eclipse.platform</groupId>
+									<artifactId>org.eclipse.equinox.useradmin</artifactId>
+									<version>1.2.400</version>
+									<type>jar</type>
+									<outputDirectory>
+										${target.xenv.path}/03_SERVICE</outputDirectory>
+								</artifactItem>
+								<artifactItem>
+									<groupId>org.osgi</groupId>
+									<artifactId>org.osgi.service.useradmin</artifactId>
+									<version>1.1.1</version>
+									<outputDirectory>
+										${target.xenv.path}/01_API</outputDirectory>
+								</artifactItem>
+								<!-- Datenbank -->
+								<artifactItem>
+									<groupId>com.h2database</groupId>
+									<artifactId>h2</artifactId>
+									<version>2.2.224</version>
+									<outputDirectory>
+										${target.xenv.path}/04_DB</outputDirectory>
+								</artifactItem>
+								<!-- Administrator Console -->
+								<artifactItem>
+									<groupId>org.eclipse.platform</groupId>
+									<artifactId>org.eclipse.equinox.console</artifactId>
+									<version>1.4.800</version>
+									<outputDirectory>${target.xenv.path} </outputDirectory>
+								</artifactItem>
+								<artifactItem>
+									<groupId>org.apache.felix</groupId>
+									<artifactId>org.apache.felix.gogo.runtime</artifactId>
+									<version>1.1.6</version>
+									<outputDirectory>${target.xenv.path} </outputDirectory>
+								</artifactItem>
+								<artifactItem>
+									<groupId>org.apache.felix</groupId>
+									<artifactId>org.apache.felix.gogo.command</artifactId>
+									<version>1.1.2</version>
+									<outputDirectory>${target.xenv.path} </outputDirectory>
+								</artifactItem>
+								<artifactItem>
+									<groupId>org.apache.felix</groupId>
+									<artifactId>org.apache.felix.gogo.shell</artifactId>
+									<version>1.1.4</version>
+									<outputDirectory>${target.xenv.path} </outputDirectory>
 								</artifactItem>
 							</artifactItems>
 						</configuration>

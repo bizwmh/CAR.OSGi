@@ -2,7 +2,7 @@
 <launchConfiguration type="org.eclipse.jdt.launching.localJavaApplication">
     <booleanAttribute key="org.eclipse.debug.core.ATTR_FORCE_SYSTEM_CONSOLE_ENCODING" value="false"/>
     <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
-        <listEntry value="/CAR.OSGi/src/main/java/biz/wmh/car/osgi/Main.java"/>
+        <listEntry value="/CAR.OSGi/src/main/java/biz/car/osgi/Main.java"/>
     </listAttribute>
     <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
         <listEntry value="1"/>
@@ -24,7 +24,7 @@
     </listAttribute>
     <stringAttribute key="org.eclipse.jdt.launching.CLASSPATH_PROVIDER" value="org.eclipse.m2e.launchconfig.classpathProvider"/>
     <booleanAttribute key="org.eclipse.jdt.launching.DEFAULT_CLASSPATH" value="false"/>
-    <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="biz.wmh.car.osgi.Main"/>
+    <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="biz.car.osgi.Main"/>
     <listAttribute key="org.eclipse.jdt.launching.MODULEPATH"/>
     <stringAttribute key="org.eclipse.jdt.launching.MODULE_NAME" value="CAR.OSGi"/>
     <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="CAR.OSGi"/>

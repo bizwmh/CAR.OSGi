@@ -4,9 +4,9 @@
  * Use of this software is subject to license terms. All Rights Reserved. 
  * -------------------------------------------------------------------------- */
 
-package biz.wmh.car.osgi.deploy;
+package biz.car.osgi.deploy;
 
-import static biz.wmh.car.osgi.bundle.VAL.osgi_install_area;
+import static biz.car.osgi.bundle.VAL.osgi_install_area;
 
 import java.io.File;
 import java.net.URI;
@@ -17,11 +17,11 @@ import java.util.List;
 
 import org.osgi.framework.BundleContext;
 
-import biz.wmh.car.SYS;
-import biz.wmh.car.io.DirectoryListener;
-import biz.wmh.car.io.DirectoryWatcher;
-import biz.wmh.car.osgi.bundle.BND;
-import biz.wmh.car.osgi.framework.XFramework;
+import biz.car.SYS;
+import biz.car.io.DirectoryListener;
+import biz.car.io.DirectoryWatcher;
+import biz.car.osgi.bundle.BND;
+import biz.car.osgi.framework.XFramework;
 
 /**
  * Watches the OSGi installation area for file changes and automatically

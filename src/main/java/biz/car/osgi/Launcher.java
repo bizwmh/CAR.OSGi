@@ -87,14 +87,15 @@ public class Launcher implements Runnable {
 
 			Runtime.getRuntime().addShutdownHook(l_thread);
 
-			// Publish the diagnose logger
+			// Build the framework configuration
 			Map<String, String> l_osgiConf = new HashMap<>();
+
+			// Publish the diagnose logger
 			String l_val = VAL.framework_logger_diagnose;
 			String l_name = ACS.APP.getString(VAL.diagnoseLogger);
 
 			l_osgiConf.put(l_val, l_name);
 
-			// Build the framework configuration
 			// Converts the given framework configuration to a map.
 			// The map then contains only keys as required by the OSGi framework
 			// implementation or framework related properties
@@ -109,6 +110,11 @@ public class Launcher implements Runnable {
 						l_osgiConf.put(l_key, l_value.toString());
 					});
 
+			// publish framework data area key
+			String l_key = VAL.framework_data_area;
+			String l_value = l_fwkProps.getString(l_key);
+			l_osgiConf.put(l_key, l_value);
+			
 			// create an instance of the OSGi framework and initialize it
 			XFramework.init(l_osgiConf);
 

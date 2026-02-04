@@ -141,6 +141,9 @@ public class XFramework {
 				// Start the framework
 				fwk.start();
 				SYS.LOG.info(MSG.FWK_STARTED);
+				
+				// Log diagnostic information
+				FrameworkDiagnose.accept(fwk);
 
 				// Wait for framework to stop to exit the VM
 				l_event = fwk.waitForStop(0);

@@ -35,13 +35,13 @@ import biz.car.osgi.framework.XFramework;
 public class InstallArea implements CAR {
 
 	private static Pattern areaPath = Pattern.compile("(\\/\\d{2})"); //$NON-NLS-1$
-	private static final InstallAreaWatcher watcher = new InstallAreaWatcher();
+	private static final Deployer watcher = new Deployer();
 
 	/**
-	 * @return a reference to the singleton <code>InstallAreaWatcher</code>
+	 * @return a reference to the singleton <code>Deployer</code>
 	 *         instance.
 	 */
-	public static InstallAreaWatcher watcher() {
+	public static Deployer watcher() {
 		return watcher;
 	}
 

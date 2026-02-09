@@ -102,33 +102,34 @@ public class Launcher implements Runnable {
 			XConfig l_fwkKeys = () -> KEY.conf;
 
 			l_fwkProps.entrySet().stream()
-					.forEach(entry -> {
-						String l_key = entry.getKey();
-						Object l_value = entry.getValue().unwrapped();
-						l_key = l_fwkKeys.getString(l_key, l_key);
+			      .forEach(entry -> {
+				      String l_key = entry.getKey();
+				      Object l_value = entry.getValue().unwrapped();
+				      l_key = l_fwkKeys.getString(l_key, l_key);
 
-						l_osgiConf.put(l_key, l_value.toString());
-					});
+				      l_osgiConf.put(l_key, l_value.toString());
+			      });
 
 			// publish framework data area key
 			String l_key = VAL.framework_data_area;
 			String l_value = l_fwkProps.getString(l_key);
 			l_osgiConf.put(l_key, l_value);
-			
+
 			// create an instance of the OSGi framework and initialize it
 			XFramework.init(l_osgiConf);
 
-			// process the OSGi install area by provisioning 
+			// process the OSGi install area by provisioning
 			// jar file changes to OSGi bundle storage
-			Deployer l_deployer = new Deployer();
-			
+			Deployer l_deployer = InstallArea.watcher();
+
 			l_deployer.processInstallArea();
 
 			// Start hot deployment if enabled
-			boolean l_enabled = l_fwkProps.getBoolean(VAL.framework_hotdeploy_enabled);
-			
+			String l_deployKey = VAL.framework_hotdeploy_enabled;
+			boolean l_enabled = l_fwkProps.getBoolean(l_deployKey);
+
 			if (l_enabled) {
-				InstallArea.watcher().start();
+				l_deployer.watchInstallArea();
 			}
 			// start the framework and wait for stop to exit the VM
 			XFramework.start();

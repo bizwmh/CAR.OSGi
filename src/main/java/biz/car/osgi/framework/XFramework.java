@@ -6,6 +6,7 @@
 
 package biz.car.osgi.framework;
 
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
@@ -32,11 +33,11 @@ public class XFramework {
 
 	private static Framework fwk;
 	private static final long REFRESH_TIMEOUT;
-	
+
 	static {
 		REFRESH_TIMEOUT = Delay.Period.apply(BND.FRAMEWORK_REFREH_TIMEOUT);
 	}
-	
+
 	/**
 	 * @return a reference to the framework bundle context.
 	 */
@@ -141,7 +142,7 @@ public class XFramework {
 				// Start the framework
 				fwk.start();
 				SYS.LOG.info(MSG.FWK_STARTED);
-				
+
 				// Log diagnostic information
 				FrameworkDiagnose.accept(fwk);
 
@@ -155,6 +156,27 @@ public class XFramework {
 		} catch (InterruptedException anEx) {
 		} catch (Exception anEx) {
 			throw SYS.LOG.exception(anEx);
+		}
+	}
+
+	/**
+	 * Starts a list of bundles.
+	 * 
+	 * @param aBundles the list of bundles to start.
+	 */
+	public static void startBundles(List<Bundle> aBundles) {
+		// start bundles if not fragment
+		for (Bundle l_installed : aBundles) {
+			if (!isFragment(l_installed)) {
+				try {
+					// Nutzung von START_TRANSIENT verhindert, dass der Start-Status
+					// persistent gespeichert wird (sauberer für Development)
+					l_installed.start(Bundle.START_ACTIVATION_POLICY);
+				} catch (Exception anEx) {
+					// Loggen, aber nicht den ganzen Batch abbrechen
+					SYS.LOG.error(anEx.getMessage());
+				}
+			}
 		}
 	}
 

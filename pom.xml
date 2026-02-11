@@ -20,6 +20,16 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
+	<repositories>
+		<repository>
+			<id>apache.servicemix</id>
+			<url>https://repository.apache.org/content/groups/public/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+		</repository>
+	</repositories>
+
 	<dependencies>
 		<dependency>
 			<groupId>biz.car</groupId>
@@ -45,6 +55,7 @@
 			<scope>provided</scope>
 		</dependency>
 	</dependencies>
+
 	<build>
 		<plugins>
 			<plugin>
@@ -93,7 +104,6 @@
 						</goals>
 						<configuration>
 							<artifactItems>
-								<!-- Deployment to WORKSPACE -->
 								<!-- OSGi Framework Launcher -->
 								<artifactItem>
 									<groupId>${project.groupId}</groupId>
@@ -101,11 +111,18 @@
 									<version>${project.version}</version>
 									<outputDirectory>${target.deploy.lib} </outputDirectory>
 								</artifactItem>
-								<!-- OSGi Framework -->
+								<!-- Equinox -->
 								<artifactItem>
 									<groupId>org.eclipse.platform</groupId>
 									<artifactId>org.eclipse.osgi</artifactId>
 									<version>3.21.0</version>
+									<outputDirectory>${target.deploy.lib} </outputDirectory>
+								</artifactItem>
+								<!-- Application Configuration Support -->
+								<artifactItem>
+									<groupId>com.typesafe</groupId>
+									<artifactId>config</artifactId>
+									<version>1.4.3</version>
 									<outputDirectory>${target.deploy.lib} </outputDirectory>
 								</artifactItem>
 								<!-- Logging -->
@@ -125,13 +142,6 @@
 									<groupId>ch.qos.logback</groupId>
 									<artifactId>logback-core</artifactId>
 									<version>1.5.7</version>
-									<outputDirectory>${target.deploy.lib} </outputDirectory>
-								</artifactItem>
-								<!-- Application Configuration Support -->
-								<artifactItem>
-									<groupId>com.typesafe</groupId>
-									<artifactId>config</artifactId>
-									<version>1.4.3</version>
 									<outputDirectory>${target.deploy.lib} </outputDirectory>
 								</artifactItem>
 								<!-- Configuration Admin -->
@@ -233,23 +243,7 @@
 									<outputDirectory>
 										${target.deploy.path}/04_DB</outputDirectory>
 								</artifactItem>
-								<artifactItem>
-									<groupId>org.osgi</groupId>
-									<artifactId>
-										org.osgi.service.component.annotations</artifactId>
-									<version>1.5.1</version>
-									<outputDirectory>
-										${target.deploy.path}/01_API</outputDirectory>
-								</artifactItem>
-								<artifactItem>
-									<groupId>org.osgi</groupId>
-									<artifactId>
-										org.osgi.service.metatype.annotations</artifactId>
-									<version>1.4.1</version>
-									<outputDirectory>
-										${target.deploy.path}/01_API </outputDirectory>
-								</artifactItem>
-								<!-- Web Server -->
+								<!-- Jetty Web Server -->
 								<artifactItem>
 									<groupId>org.apache.felix</groupId>
 									<artifactId>org.apache.felix.http.jetty</artifactId>
@@ -265,66 +259,7 @@
 									<outputDirectory>
 										${target.deploy.path}/01_API </outputDirectory>
 								</dependency>
-								<dependency>
-									<groupId>org.apache.felix</groupId>
-									<artifactId>org.apache.felix.webconsole</artifactId>
-									<version>4.8.8</version>
-									<outputDirectory>
-										${target.deploy.path}/05_WEB </outputDirectory>
-								</dependency>
-								<dependency>
-									<groupId>org.apache.felix</groupId>
-									<artifactId>
-										org.apache.felix.webconsole.plugins.memoryusage</artifactId>
-									<version>1.0.8</version>
-									<outputDirectory>
-										${target.deploy.path}/05_WEB </outputDirectory>
-								</dependency>
-								<dependency>
-									<groupId>org.apache.felix</groupId>
-									<artifactId>
-										org.apache.felix.webconsole.plugins.event</artifactId>
-									<version>1.1.8</version>
-									<outputDirectory>
-										${target.deploy.path}/05_WEB </outputDirectory>
-								</dependency>
-								<dependency>
-									<groupId>org.apache.felix</groupId>
-									<artifactId>
-										org.apache.felix.webconsole.plugins.ds</artifactId>
-									<version>2.1.0</version>
-									<outputDirectory>
-										${target.deploy.path}/05_WEB </outputDirectory>
-								</dependency>
-								<dependency>
-									<groupId>commons-fileupload</groupId>
-									<artifactId>commons-fileupload</artifactId>
-									<version>1.6.0</version>
-									<outputDirectory>
-										${target.deploy.path}/01_API </outputDirectory>
-								</dependency>
-								<dependency>
-									<groupId>commons-io</groupId>
-									<artifactId>commons-io</artifactId>
-									<version>2.21.0</version>
-									<outputDirectory>
-										${target.deploy.path}/01_API </outputDirectory>
-								</dependency>
-								<dependency>
-									<groupId>org.apache.felix</groupId>
-									<artifactId>org.apache.felix.inventory</artifactId>
-									<version>1.1.0</version>
-									<outputDirectory>
-										${target.deploy.path}/01_API </outputDirectory>
-								</dependency>
-								<artifactItem>
-									<groupId>org.owasp.encoder</groupId>
-									<artifactId>encoder</artifactId>
-									<version>1.2.3</version>
-									<outputDirectory>
-										${target.deploy.path}/01_API </outputDirectory>
-								</artifactItem>
-								<!-- Administrator Console -->
+								<!-- Administrator Terminal Console -->
 								<artifactItem>
 									<groupId>org.eclipse.platform</groupId>
 									<artifactId>org.eclipse.equinox.console</artifactId>
@@ -349,6 +284,59 @@
 									<version>1.1.4</version>
 									<outputDirectory>${target.deploy.path} </outputDirectory>
 								</artifactItem>
+								<!-- Administrator Web Console -->
+								<dependency>
+									<groupId>org.apache.felix</groupId>
+									<artifactId>org.apache.felix.webconsole</artifactId>
+									<version>4.8.8</version>
+									<outputDirectory>
+										${target.deploy.path}</outputDirectory>
+								</dependency>
+								<dependency>
+									<groupId>org.apache.felix</groupId>
+									<artifactId>
+										org.apache.felix.webconsole.plugins.ds</artifactId>
+									<version>2.1.0</version>
+									<outputDirectory>
+										${target.deploy.path}</outputDirectory>
+								</dependency>
+								<dependency>
+									<groupId>org.apache.felix</groupId>
+									<artifactId>org.apache.felix.inventory</artifactId>
+									<version>1.1.0</version>
+									<outputDirectory>
+										${target.deploy.path}</outputDirectory>
+								</dependency>
+								<dependency>
+									<groupId>commons-fileupload</groupId>
+									<artifactId>commons-fileupload</artifactId>
+									<version>1.6.0</version>
+									<outputDirectory>
+										${target.deploy.path}/01_API </outputDirectory>
+								</dependency>
+								<dependency>
+									<groupId>commons-io</groupId>
+									<artifactId>commons-io</artifactId>
+									<version>2.21.0</version>
+									<outputDirectory>
+										${target.deploy.path}/01_API </outputDirectory>
+								</dependency>
+								<dependency>
+									<groupId>org.apache.felix</groupId>
+									<artifactId>
+										org.apache.felix.webconsole.plugins.memoryusage</artifactId>
+									<version>1.0.8</version>
+									<outputDirectory>
+										${target.deploy.path}</outputDirectory>
+								</dependency>
+								<dependency>
+									<groupId>org.apache.felix</groupId>
+									<artifactId>
+										org.apache.felix.webconsole.plugins.packageadmin</artifactId>
+									<version>1.0.4</version>
+									<outputDirectory>
+										${target.deploy.path}</outputDirectory>
+								</dependency>
 							</artifactItems>
 						</configuration>
 					</execution>
@@ -367,81 +355,93 @@
 						</goals>
 						<configuration>
 							<target>
+								<!-- OSGi Framework Launcher -->
+								<copy
+									file="${target.deploy.lib}/car.osgi-2.0.0.jar"
+									todir="${target.xenv.lib}" />
+								<!-- Equinox -->
+								<copy
+									file="${target.deploy.lib}/org.eclipse.osgi-3.21.0.jar"
+									todir="${target.xenv.lib}" />
+								<!-- Application Configuration Support -->
+								<copy
+									file="${target.deploy.lib}/config-1.4.3.jar"
+									todir="${target.xenv.lib}" />
+								<!-- Logging -->
+								<copy
+									file="${target.deploy.lib}/slf4j-api-2.0.16.jar"
+									todir="${target.xenv.lib}" />
+								<copy
+									file="${target.deploy.lib}/logback-classic-1.5.7.jar"
+									todir="${target.xenv.lib}" />
+								<copy
+									file="${target.deploy.lib}/logback-core-1.5.7.jar"
+									todir="${target.xenv.lib}" />
+								<!-- Declarative Services -->
+								<copy
+									file="${target.deploy.path}/01_API/org.osgi.service.component-1.5.1.jar"
+									todir="${target.xenv.path}/01_API" />
+								<copy
+									file="${target.deploy.path}/01_API/org.osgi.util.promise-1.3.0.jar"
+									todir="${target.xenv.path}/01_API" />
+								<copy
+									file="${target.deploy.path}/01_API/org.osgi.util.function-1.2.0.jar"
+									todir="${target.xenv.path}/01_API" />
+								<!-- Preferences -->
+								<copy
+									file="${target.deploy.path}/01_API/org.osgi.service.prefs-1.1.2.jar"
+									todir="${target.xenv.path}/01_API" />
+								<copy
+									file="${target.deploy.path}/01_API/org.eclipse.equinox.common-3.19.100.jar"
+									todir="${target.xenv.path}/01_API" />
+								<!-- User Admin Service -->
+								<copy
+									file="${target.deploy.path}/01_API/org.osgi.service.useradmin-1.1.1.jar"
+									todir="${target.xenv.path}/01_API" />
+								<!-- Jetty Web Server -->
+								<copy
+									file="${target.deploy.path}/01_API/org.apache.felix.http.servlet-api-1.2.0.jar"
+									todir="${target.xenv.path}/01_API" />
+								<!-- Administrator Web Console -->
 								<copy
 									file="${target.deploy.path}/01_API/commons-fileupload-1.6.0.jar"
 									todir="${target.xenv.path}/01_API" />
 								<copy
 									file="${target.deploy.path}/01_API/commons-io-2.21.0.jar"
 									todir="${target.xenv.path}/01_API" />
-								<copy
-									file="${target.deploy.path}/01_API/encoder-1.2.3.jar"
-									todir="${target.xenv.path}/01_API" />
-								<copy
-									file="${target.deploy.path}/01_API/org.apache.felix.http.servlet-api-1.2.0.jar"
-									todir="${target.xenv.path}/01_API" />
-								<copy
-									file="${target.deploy.path}/01_API/org.apache.felix.inventory-1.1.0.jar"
-									todir="${target.xenv.path}/01_API" />
-								<copy
-									file="${target.deploy.path}/01_API/org.eclipse.equinox.common-3.19.100.jar"
-									todir="${target.xenv.path}/01_API" />
-								<copy
-									file="${target.deploy.path}/01_API/org.osgi.service.component.annotations-1.5.1.jar"
-									todir="${target.xenv.path}/01_API" />
-								<copy
-									file="${target.deploy.path}/01_API/org.osgi.service.component-1.5.1.jar"
-									todir="${target.xenv.path}/01_API" />
-								<copy
-									file="${target.deploy.path}/01_API/org.osgi.service.metatype.annotations-1.4.1.jar"
-									todir="${target.xenv.path}/01_API" />
-								<copy
-									file="${target.deploy.path}/01_API/org.osgi.service.prefs-1.1.2.jar"
-									todir="${target.xenv.path}/01_API" />
-								<copy
-									file="${target.deploy.path}/01_API/org.osgi.service.useradmin-1.1.1.jar"
-									todir="${target.xenv.path}/01_API" />
-								<copy
-									file="${target.deploy.path}/01_API/org.osgi.util.function-1.2.0.jar"
-									todir="${target.xenv.path}/01_API" />
-								<copy
-									file="${target.deploy.path}/01_API/org.osgi.util.promise-1.3.0.jar"
-									todir="${target.xenv.path}/01_API" />
+								<!-- Configuration Admin -->
 								<copy
 									file="${target.deploy.path}/02_CM/org.apache.felix.configadmin-1.9.26.jar"
 									todir="${target.xenv.path}/02_CM" />
+								<!-- Metatype Service -->
 								<copy
 									file="${target.deploy.path}/02_CM/org.apache.felix.metatype-1.2.4.jar"
 									todir="${target.xenv.path}/02_CM" />
-								<copy
-									file="${target.deploy.path}/03_SERVICE/org.apache.felix.eventadmin-1.6.4.jar"
-									todir="${target.xenv.path}/03_SERVICE" />
+								<!-- Declarative Services -->
 								<copy
 									file="${target.deploy.path}/03_SERVICE/org.apache.felix.scr-2.2.12.jar"
 									todir="${target.xenv.path}/03_SERVICE" />
+								<!-- Preferences -->
 								<copy
 									file="${target.deploy.path}/03_SERVICE/org.eclipse.equinox.preferences-3.11.100.jar"
 									todir="${target.xenv.path}/03_SERVICE" />
+								<!-- Event Admin -->
+								<copy
+									file="${target.deploy.path}/03_SERVICE/org.apache.felix.eventadmin-1.6.4.jar"
+									todir="${target.xenv.path}/03_SERVICE" />
+								<!-- User Admin Service -->
 								<copy
 									file="${target.deploy.path}/03_SERVICE/org.eclipse.equinox.useradmin-1.2.400.jar"
 									todir="${target.xenv.path}/03_SERVICE" />
+								<!-- Datenbank -->
 								<copy
 									file="${target.deploy.path}/04_DB/h2-2.2.224.jar"
 									todir="${target.xenv.path}/04_DB" />
+								<!-- Jetty Web Server -->
 								<copy
 									file="${target.deploy.path}/05_WEB/org.apache.felix.http.jetty-4.2.2.jar"
 									todir="${target.xenv.path}/05_WEB" />
-								<copy
-									file="${target.deploy.path}/05_WEB/org.apache.felix.webconsole.plugins.ds-2.1.0.jar"
-									todir="${target.xenv.path}/05_WEB" />
-								<copy
-									file="${target.deploy.path}/05_WEB/org.apache.felix.webconsole.plugins.event-1.1.8.jar"
-									todir="${target.xenv.path}/05_WEB" />
-								<copy
-									file="${target.deploy.path}/05_WEB/org.apache.felix.webconsole.plugins.memoryusage-1.0.8.jar"
-									todir="${target.xenv.path}/05_WEB" />
-								<copy
-									file="${target.deploy.path}/05_WEB/org.apache.felix.webconsole-4.8.8.jar"
-									todir="${target.xenv.path}/05_WEB" />
+								<!-- Administrator Terminal Console -->
 								<copy
 									file="${target.deploy.path}/org.apache.felix.gogo.command-1.1.2.jar"
 									todir="${target.xenv.path}" />
@@ -453,6 +453,22 @@
 									todir="${target.xenv.path}" />
 								<copy
 									file="${target.deploy.path}/org.eclipse.equinox.console-1.4.800.jar"
+									todir="${target.xenv.path}" />
+								<!-- Administrator Web Console -->
+								<copy
+									file="${target.deploy.path}/org.apache.felix.webconsole-4.8.8.jar"
+									todir="${target.xenv.path}" />
+								<copy
+									file="${target.deploy.path}/org.apache.felix.inventory-1.1.0.jar"
+									todir="${target.xenv.path}" />
+								<copy
+									file="${target.deploy.path}/org.apache.felix.webconsole.plugins.ds-2.1.0.jar"
+									todir="${target.xenv.path}" />
+								<copy
+									file="${target.deploy.path}/org.apache.felix.webconsole.plugins.memoryusage-1.0.8.jar"
+									todir="${target.xenv.path}" />
+								<copy
+									file="${target.deploy.path}/org.apache.felix.webconsole.plugins.packageadmin-1.0.4.jar"
 									todir="${target.xenv.path}" />
 							</target>
 						</configuration>

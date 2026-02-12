@@ -1,9 +1,0 @@
-Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: CAR OSGi Test Bundle
-Bundle-SymbolicName: biz.car.osgi.test
-Bundle-Version: 1.0.0
-Bundle-Activator: biz.car.osgi.test.TestBundleActivator
-Bundle-RequiredExecutionEnvironment: JavaSE-17
-Import-Package: org.osgi.framework;version="[1.8,2.0)"
-Export-Package: biz.car.osgi.test;version="1.0.0"

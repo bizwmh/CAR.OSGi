@@ -123,6 +123,7 @@ public class XFramework {
 			if (!l_refreshed) {
 				SYS.LOG.warn(MSG.REFRESH_TIMEOUT, REFRESH_TIMEOUT);
 			}
+			context().removeFrameworkListener(l_refreshListener);
 		} catch (InterruptedException anEx) {
 			throw SYS.LOG.exception(anEx);
 		} finally {

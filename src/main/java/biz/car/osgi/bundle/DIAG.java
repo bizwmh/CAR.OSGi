@@ -9,8 +9,8 @@ package biz.car.osgi.bundle;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import biz.car.ILogger;
 import biz.car.XLogger;
+import biz.car.bundle.ILogger;
 import biz.car.config.ACS;
 
 /**

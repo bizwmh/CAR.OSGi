@@ -6,11 +6,8 @@
 
 package biz.car.osgi.bundle;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import biz.car.XLogger;
-import biz.car.bundle.ILogger;
+import biz.car.XLoggerFactory;
 import biz.car.config.ACS;
 
 /**
@@ -29,8 +26,7 @@ public class DIAG {
 	
 	static {
 		String l_name = ACS.APP.getString(VAL.diagnoseLogger);
-		Logger l_logger = LoggerFactory.getLogger(l_name);
-		LOG = new ILogger(l_logger);
+		LOG = XLoggerFactory.getLogger(l_name);
 	}
 
 	/**

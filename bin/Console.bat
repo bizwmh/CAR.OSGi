@@ -20,13 +20,13 @@ cd %CURRENT_DIR%
 @REM Try to find CAR_OSGI_HOME
 @REM ---------------------------------------------------------------------------
 
-if exist "%CAR_OSGI_HOME%\bin\car.osgi.bat" goto :SETUP_JVM
+if exist "%CAR_OSGI_HOME%\bin\Console.bat" goto :SETUP_JVM
 if not "%CAR_OSGI_HOME%" == "" goto BAD_HOME
-if exist "%CURRENT_DIR%\bin\car.osgi.bat" (
+if exist "%CURRENT_DIR%\bin\Console.bat" (
 	set CAR_OSGI_HOME=%CURRENT_DIR%"
 	goto :SETUP_JVM
 )
-if exist "%PARENT_DIR%\bin\car.osgi.bat" (
+if exist "%PARENT_DIR%\bin\Console.bat" (
 	set "CAR_OSGI_HOME=%PARENT_DIR%"
 	goto :SETUP_JVM
 )

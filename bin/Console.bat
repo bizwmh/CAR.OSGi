@@ -47,6 +47,7 @@ goto EXIT
 @REM ---------------------------------------------------------------------------
 
 set JAVA=java
+set JAVA_OPTS=
 if exist "%JAVA_HOME%\bin\java.exe" (
 	set JAVA="%JAVA_HOME%\bin\java.exe"
 	if exist "%JAVA_HOME%\bin\server\jvm.dll" (

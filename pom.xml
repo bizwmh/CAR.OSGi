@@ -233,6 +233,13 @@
 									<outputDirectory>
 										${target.deploy.path}/04_DB</outputDirectory>
 								</artifactItem>
+								<artifactItem>
+									<groupId>org.osgi</groupId>
+									<artifactId>org.osgi.service.jdbc</artifactId>
+									<version>1.1.0</version>
+									<outputDirectory>
+										${target.deploy.path}/01_API</outputDirectory>
+								</artifactItem>
 								<!-- Jetty Web Server -->
 								<artifactItem>
 									<groupId>org.apache.felix</groupId>
@@ -248,6 +255,13 @@
 									<version>1.2.0</version>
 									<outputDirectory>
 										${target.deploy.path}/01_API </outputDirectory>
+								</dependency>
+								<dependency>
+									<groupId>org.apache.felix</groupId>
+									<artifactId>org.apache.felix.inventory</artifactId>
+									<version>1.1.0</version>
+									<outputDirectory>
+										${target.deploy.path}/05_WEB</outputDirectory>
 								</dependency>
 								<!-- Administrator Terminal Console -->
 								<artifactItem>
@@ -287,13 +301,6 @@
 									<artifactId>
 										org.apache.felix.webconsole.plugins.ds</artifactId>
 									<version>2.1.0</version>
-									<outputDirectory>
-										${target.deploy.path}</outputDirectory>
-								</dependency>
-								<dependency>
-									<groupId>org.apache.felix</groupId>
-									<artifactId>org.apache.felix.inventory</artifactId>
-									<version>1.1.0</version>
 									<outputDirectory>
 										${target.deploy.path}</outputDirectory>
 								</dependency>

@@ -263,6 +263,14 @@
 									<outputDirectory>
 										${target.deploy.path}/05_WEB</outputDirectory>
 								</dependency>
+								<!-- Administrator Web Console -->
+								<dependency>
+									<groupId>org.apache.felix</groupId>
+									<artifactId>org.apache.felix.webconsole</artifactId>
+									<version>4.8.8</version>
+									<outputDirectory>
+										${target.deploy.path}/05_WEB</outputDirectory>
+								</dependency>
 								<!-- Administrator Terminal Console -->
 								<artifactItem>
 									<groupId>org.eclipse.platform</groupId>
@@ -288,14 +296,7 @@
 									<version>1.1.4</version>
 									<outputDirectory>${target.deploy.path} </outputDirectory>
 								</artifactItem>
-								<!-- Administrator Web Console -->
-								<dependency>
-									<groupId>org.apache.felix</groupId>
-									<artifactId>org.apache.felix.webconsole</artifactId>
-									<version>4.8.8</version>
-									<outputDirectory>
-										${target.deploy.path}</outputDirectory>
-								</dependency>
+								<!-- Administrator Web Console Plugins -->
 								<dependency>
 									<groupId>org.apache.felix</groupId>
 									<artifactId>
@@ -438,6 +439,13 @@
 								<copy
 									file="${target.deploy.path}/05_WEB/org.apache.felix.http.jetty-4.2.2.jar"
 									todir="${target.xenv.path}/05_WEB" />
+								<copy
+									file="${target.deploy.path}/05_WEB/org.apache.felix.inventory-1.1.0.jar"
+									todir="${target.xenv.path}/05_WEB" />
+								<!-- Administrator Web Console -->
+								<copy
+									file="${target.deploy.path}/org.apache.felix.webconsole-4.8.8.jar"
+									todir="${target.xenv.path}/05_WEB" />
 								<!-- Administrator Terminal Console -->
 								<copy
 									file="${target.deploy.path}/org.apache.felix.gogo.command-1.1.2.jar"
@@ -450,13 +458,6 @@
 									todir="${target.xenv.path}" />
 								<copy
 									file="${target.deploy.path}/org.eclipse.equinox.console-1.4.800.jar"
-									todir="${target.xenv.path}" />
-								<!-- Administrator Web Console -->
-								<copy
-									file="${target.deploy.path}/org.apache.felix.webconsole-4.8.8.jar"
-									todir="${target.xenv.path}" />
-								<copy
-									file="${target.deploy.path}/org.apache.felix.inventory-1.1.0.jar"
 									todir="${target.xenv.path}" />
 								<copy
 									file="${target.deploy.path}/org.apache.felix.webconsole.plugins.ds-2.1.0.jar"

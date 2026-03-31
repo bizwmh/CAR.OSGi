@@ -17,17 +17,17 @@ set "PARENT_DIR=%cd%"
 cd %CURRENT_DIR%
 
 @REM ---------------------------------------------------------------------------
-@REM Try to find CAR_OSGI_HOME
+@REM Try to find OASE_HOME
 @REM ---------------------------------------------------------------------------
 
-if exist "%CAR_OSGI_HOME%\bin\Console.bat" goto :SETUP_JVM
-if not "%CAR_OSGI_HOME%" == "" goto BAD_HOME
+if exist "%OASE_HOME%\bin\Console.bat" goto :SETUP_JVM
+if not "%OASE_HOME%" == "" goto BAD_HOME
 if exist "%CURRENT_DIR%\bin\Console.bat" (
-	set CAR_OSGI_HOME=%CURRENT_DIR%"
+	set OASE_HOME=%CURRENT_DIR%"
 	goto :SETUP_JVM
 )
 if exist "%PARENT_DIR%\bin\Console.bat" (
-	set "CAR_OSGI_HOME=%PARENT_DIR%"
+	set "OASE_HOME=%PARENT_DIR%"
 	goto :SETUP_JVM
 )
 
@@ -35,9 +35,8 @@ if exist "%PARENT_DIR%\bin\Console.bat" (
 :BAD_HOME
 @REM ---------------------------------------------------------------------------
 
-echo CAR_OSGI_HOME is set to %OSGI_HOME%
-echo CAR_OSGI_HOME environment variable is not set or points to the wrong directory.
-echo Please set CAR_OSGI_HOME correctly and launch CAR OSGi again.
+echo OASE_HOME environment variable is not set or points to the wrong directory.
+echo Please set OASE_HOME correctly and launch CAR OSGi again.
 set ERRORLEVEL=1
 
 goto EXIT
@@ -47,14 +46,14 @@ goto EXIT
 @REM ---------------------------------------------------------------------------
 
 set JAVA=java
-set JAVA_OPTS=
+set JAVA_OPTS=-Xms32M -Xmx128M
+
 if exist "%JAVA_HOME%\bin\java.exe" (
 	set JAVA="%JAVA_HOME%\bin\java.exe"
 	if exist "%JAVA_HOME%\bin\server\jvm.dll" (
 		set "JAVA_OPTS=-server"
 	)
 )
-set JAVA_OPTS=%JAVA_OPTS% -Xms32M -Xmx128M
 set JAVA_OPTS=%JAVA_OPTS% --add-modules=ALL-SYSTEM
 set JAVA_OPTS=%JAVA_OPTS% --add-opens=java.base/java.lang=ALL-UNNAMED
 set JAVA_OPTS=%JAVA_OPTS% --add-opens=java.base/java.util=ALL-UNNAMED
@@ -85,14 +84,13 @@ set "CLASSPATH=%CLASSPATH%;configuration"
 @REM LAUNCH CAR OSGi
 @REM ---------------------------------------------------------------------------
 
-echo CAR_OSGI_HOME  is set to %CAR_OSGI_HOME%
+echo OASE_HOME      is set to %OASE_HOME%
 echo JAVA           is set to %JAVA%
-echo JAVA_OPTS      is set to %JAVA_OPTS%
 echo CLASSPATH      is set to %CLASSPATH%
 echo USER_ARGS      is set to %USER_ARGS%
 echo:
 
-cd %CAR_OSGI_HOME%
+cd %OASE_HOME%
 
 @REM ---------------------------------------------------------------------------
 :LAUNCH

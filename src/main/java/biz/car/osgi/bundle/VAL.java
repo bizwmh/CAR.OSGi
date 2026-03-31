@@ -19,12 +19,15 @@ public class VAL {
 	public static String diagnoseLogger;
 	public static String framework;
 	public static String framework_configuration_area;
+	public static String framework_configuration_cm;
+	public static String framework_console;
 	public static String framework_data_area;
 	public static String framework_hotdeploy_enabled;
 	public static String framework_logger_diagnose;
 	public static String osgi_install_area;
 	public static String osgi_instance_area;
 	public static String system;
+	public static String user_dir;
 
 	// -------------------------------------------------------------------------
 	// Initialize the static fields

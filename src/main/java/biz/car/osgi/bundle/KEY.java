@@ -9,8 +9,7 @@ package biz.car.osgi.bundle;
 import static biz.car.bundle.VAL._properties;
 
 import com.typesafe.config.Config;
-
-import biz.car.config.ACS;
+import com.typesafe.config.ConfigFactory;
 
 /**
  * Framework specific keys for runtime options.
@@ -25,7 +24,9 @@ public class KEY {
 	// Initialize the static fields
 	// -------------------------------------------------------------------------
 	static {
-        conf = ACS.initialize(KEY.class, BND.FRAMEWORK + _properties);
+		String l_res = BND.FRAMEWORK + _properties;
+		ClassLoader l_cl = KEY.class.getClassLoader();
+        conf = ConfigFactory.parseResources(l_cl, l_res);
 	}
 	
 	/**

@@ -20,6 +20,7 @@ import com.typesafe.config.ConfigFactory;
 import biz.car.SYS;
 import biz.car.XRuntimeException;
 import biz.car.config.ACS;
+import biz.car.config.CConfig;
 import biz.car.config.XConfig;
 import biz.car.osgi.bundle.BND;
 import biz.car.osgi.bundle.KEY;
@@ -88,32 +89,7 @@ public class Launcher implements Runnable {
 			Runtime.getRuntime().addShutdownHook(l_thread);
 
 			// Build the framework configuration
-			Map<String, String> l_osgiConf = new HashMap<>();
-
-			// Publish the diagnose logger
-			String l_val = VAL.framework_logger_diagnose;
-			String l_name = ACS.APP.getString(VAL.diagnoseLogger);
-
-			l_osgiConf.put(l_val, l_name);
-
-			// Converts the given framework configuration to a map.
-			// The map then contains only keys as required by the OSGi framework
-			// implementation or framework related properties
-			XConfig l_fwkKeys = () -> KEY.conf;
-
-			l_fwkProps.entrySet().stream()
-			      .forEach(entry -> {
-				      String l_key = entry.getKey();
-				      Object l_value = entry.getValue().unwrapped();
-				      l_key = l_fwkKeys.getString(l_key, l_key);
-
-				      l_osgiConf.put(l_key, l_value.toString());
-			      });
-
-			// publish framework data area key
-			String l_key = VAL.framework_data_area;
-			String l_value = l_fwkProps.getString(l_key);
-			l_osgiConf.put(l_key, l_value);
+			Map<String, String> l_osgiConf = buildOsgiConfig(l_fwkProps);
 
 			// create an instance of the OSGi framework and initialize it
 			XFramework.init(l_osgiConf);
@@ -152,6 +128,46 @@ public class Launcher implements Runnable {
 		// Stop the framework
 		XFramework.stop();
 		SYS.LOG.info(MSG.FWK_STOPPED);
+	}
+
+	private Map<String, String> buildOsgiConfig(Config aConfig) {
+		Map<String, String> l_map = XConfig.toStringMap(aConfig);
+		XConfig l_fwkKeys = new CConfig(KEY.conf);
+
+		// check remote console as system property
+		String l_key = VAL.framework_console;
+		String l_console = l_map.get(l_key);
+		l_console = System.getProperty(l_key, l_console);
+		l_map.put(l_key, l_console);
+
+		// Publish the diagnose logger
+		l_key = VAL.framework_logger_diagnose;
+		String l_val = ACS.APP.getString(VAL.diagnoseLogger);
+
+		l_map.put(l_key, l_val);
+
+		// publish the persistence storage for the Felix Configuration Admin
+		l_key = VAL.framework_configuration_cm;
+		l_val = l_map.get(l_key);
+		l_val = System.getProperty(VAL.user_dir) + l_val;
+		l_val = l_val.replace("\\", "/"); //$NON-NLS-1$//$NON-NLS-2$
+
+		l_map.put(l_key, l_val);
+
+		// Converts the given framework configuration to a new map.
+		// The map then contains only keys as required by the OSGi framework
+		// implementation or framework related properties
+		Map<String, String> l_ret = new HashMap<String, String>();
+
+		l_map.entrySet().stream()
+			.forEach(entry -> {
+				String l_entryKey = entry.getKey();
+				String l_entryVal = entry.getValue();
+				l_entryKey = l_fwkKeys.getString(l_entryKey, l_entryKey);
+
+				l_ret.put(l_entryKey, l_entryVal);
+			});
+		return l_ret;
 	}
 
 	/**

@@ -134,6 +134,35 @@
 									<version>1.5.7</version>
 									<outputDirectory>${target.deploy.lib} </outputDirectory>
 								</artifactItem>
+								<!-- Common API -->
+								<artifactItem>
+									<groupId>commons-codec</groupId>
+									<artifactId>commons-codec</artifactId>
+									<version>1.17.1</version>
+									<outputDirectory>
+										${target.deploy.path}/01_API </outputDirectory>
+								</artifactItem>
+								<artifactItem>
+									<groupId>org.apache.commons</groupId>
+									<artifactId>commons-compress</artifactId>
+									<version>1.26.0</version>
+									<outputDirectory>
+										${target.deploy.path}/01_API </outputDirectory>
+								</artifactItem>
+								<artifactItem>
+									<groupId>org.apache.logging.log4j</groupId>
+									<artifactId>log4j-api</artifactId>
+									<version>2.23.1</version>
+									<outputDirectory>
+										${target.deploy.path}/01_API </outputDirectory>
+								</artifactItem>
+								<artifactItem>
+									<groupId>org.apache.logging.log4j</groupId>
+									<artifactId>log4j-core</artifactId>
+									<version>2.23.1</version>
+									<outputDirectory>
+										${target.deploy.path}/01_API </outputDirectory>
+								</artifactItem>
 								<!-- Configuration Admin -->
 								<artifactItem>
 									<groupId>org.apache.felix</groupId>
@@ -224,6 +253,23 @@
 									<version>1.1.1</version>
 									<outputDirectory>
 										${target.deploy.path}/01_API</outputDirectory>
+								</artifactItem>
+								<!-- Apache Service Mix -->
+								<artifactItem>
+									<groupId>org.apache.servicemix.bundles</groupId>
+									<artifactId>
+										org.apache.servicemix.bundles.poi</artifactId>
+									<version>5.3.0_1</version>
+									<outputDirectory>
+										${target.deploy.path}/03_SERVICE</outputDirectory>
+								</artifactItem>
+								<artifactItem>
+									<groupId>org.apache.servicemix.bundles</groupId>
+									<artifactId>
+										org.apache.servicemix.bundles.xmlbeans</artifactId>
+									<version>5.1.0_1</version>
+									<outputDirectory>
+										${target.deploy.path}/03_SERVICE</outputDirectory>
 								</artifactItem>
 								<!-- Datenbank -->
 								<artifactItem>
@@ -361,6 +407,19 @@
 								<copy
 									file="${target.deploy.lib}/org.eclipse.osgi-3.21.0.jar"
 									todir="${target.xenv.lib}" />
+								<!-- Common API -->
+								<copy
+									file="${target.deploy.path}/01_API/commons-codec-1.17.1.jar"
+									todir="${target.xenv.path}/01_API" />
+								<copy
+									file="${target.deploy.path}/01_API/commons-compress-1.26.0.jar"
+									todir="${target.xenv.path}/01_API" />
+								<copy
+									file="${target.deploy.path}/01_API/log4j-api-2.23.1.jar"
+									todir="${target.xenv.path}/01_API" />
+								<copy
+									file="${target.deploy.path}/01_API/log4j-core-2.23.1.jar"
+									todir="${target.xenv.path}/01_API" />
 								<!-- Application Configuration Support -->
 								<copy
 									file="${target.deploy.lib}/config-1.4.3.jar"
@@ -431,6 +490,13 @@
 								<copy
 									file="${target.deploy.path}/03_SERVICE/org.eclipse.equinox.useradmin-1.2.400.jar"
 									todir="${target.xenv.path}/03_SERVICE" />
+								<!-- Apache Service Mix -->
+								<copy
+									file="${target.deploy.path}/03_SERVICE/org.apache.servicemix.bundles.poi-5.3.0_1.jar"
+									todir="${target.xenv.path}/03_SERVICE" />
+								<copy
+									file="${target.deploy.path}/03_SERVICE/org.apache.servicemix.bundles.xmlbeans-5.1.0_1.jar"
+									todir="${target.xenv.path}/03_SERVICE" />
 								<!-- Datenbank -->
 								<copy
 									file="${target.deploy.path}/04_DB/h2-2.2.224.jar"
@@ -444,7 +510,7 @@
 									todir="${target.xenv.path}/05_WEB" />
 								<!-- Administrator Web Console -->
 								<copy
-									file="${target.deploy.path}/org.apache.felix.webconsole-4.8.8.jar"
+									file="${target.deploy.path}/05_WEB/org.apache.felix.webconsole-4.8.8.jar"
 									todir="${target.xenv.path}/05_WEB" />
 								<!-- Administrator Terminal Console -->
 								<copy

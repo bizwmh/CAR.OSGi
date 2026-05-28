@@ -16,6 +16,7 @@
 		<target.deploy.path>C:/IDE/WORKSPACE/CAR.OSGi/bundles</target.deploy.path>
 		<target.xenv.lib>C:/IDE/XENV/OASE/lib</target.xenv.lib>
 		<target.xenv.path>C:/IDE/XENV/OASE/bundles</target.xenv.path>
+		<target.elster.lib>C:/Users/it-lo/OneDrive/Einkommensteuer/OASE/lib</target.elster.lib>
 		<maven.compiler.release>17</maven.compiler.release>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
@@ -100,6 +101,12 @@
 									<artifactId>${project.artifactId}</artifactId>
 									<version>${project.version}</version>
 									<outputDirectory>${target.deploy.lib} </outputDirectory>
+								</artifactItem>
+								<artifactItem>
+									<groupId>${project.groupId}</groupId>
+									<artifactId>${project.artifactId}</artifactId>
+									<version>${project.version}</version>
+									<outputDirectory>${target.xenv.lib} </outputDirectory>
 								</artifactItem>
 								<!-- Equinox -->
 								<artifactItem>
